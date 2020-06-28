@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./SearchResults.css";
 import TrackList from "../TrackList/TrackList";
 
+import { Context } from "../../store/globalContext";
+
 const SearchResults = props => {
+  const { state } = useContext(Context);
+
   return (
     <div className="SearchResults">
-      <h2>Results</h2>
-      <TrackList tracks={props.searchResults} onAdd={props.onAdd} />
+      <h2>Search Results</h2>
+      <TrackList tracks={state.playlist} />
     </div>
   );
 };

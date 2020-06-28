@@ -3,21 +3,34 @@
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
-  width: 37%;
+  width: 50vw;
   max-height: 950px;
-  padding: 2.27rem 1.16rem;
   background-color: rgba(1, 12, 63, 0.7);
   box-shadow: 0 4px 2px 2px #000000;
 }
+.Playlist-header {
+  width: 90%;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+}
 
-.Playlist input {
-  width: 100%;
+.Playlist-header input {
+  width: 40%;
+  height: 50%;
   border: 0;
-  outline: 0;
   background: transparent;
   border-bottom: 1px solid #6f6f6f;
   font-family: 'Poppins', sans-serif;
   font-size: 1.55rem;
+  color: #fff;
+  padding: 7px;
+}
+.Playlist-header input::placeholder {
   color: #fff;
 }
 

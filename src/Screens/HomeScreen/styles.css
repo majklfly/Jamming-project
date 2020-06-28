@@ -1,0 +1,6 @@
+.App-playlist {
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+  margin-top: -5%;
+}

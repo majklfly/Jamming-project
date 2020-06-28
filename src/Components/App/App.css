@@ -36,12 +36,10 @@ h2 {
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   color: #fff;
-}
-
-.App-playlist {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1020px) {

@@ -20,6 +20,9 @@
 .SearchBar input:focus {
   outline: none;
 }
+.SearchBar input:focus::placeholder {
+  color: transparent;
+}
 
 .SearchButton {
   cursor: pointer;

@@ -1,44 +1,40 @@
-import React from 'react';
-import './SearchBar.css';
+import React, { useState, useContext } from "react";
+import "./SearchBar.css";
 
-class SearchBar extends React.Component {
+import { Context } from "../../store/globalContext";
+import Spotify from "../../util/Spotify";
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      term: ''
-    };
-    this.search = this.search.bind(this);
-    this.handleTermChange = this.handleTermChange.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
+const SearchBar = () => {
+  const [term, setTerm] = useState("");
+  const { setPlaylist } = useContext(Context);
 
-  // Sets the argument for the seearch method in App.js to the state of term
-  search() {
-    this.props.onSearch(this.state.term);
-  }
+  const search = () => {
+    Spotify.search(term).then(response => {
+      setPlaylist(response);
+    });
+  };
 
-  // Sets the state of term to the value the user enters in input
-  handleTermChange(event) {
-    this.setState({ term: event.target.value });
-  }
+  const handleTermChange = event => {
+    setTerm(event.target.value);
+  };
 
-  handleKeyPress(event) {
-    if(event.key === 'Enter') {
-      this.search();
+  const handleKeyPress = event => {
+    if (event.key === "Enter") {
+      search();
     }
-  }
-
-  render() {
-    return(
-      <div className="SearchBar">
-        <input  placeholder="Enter A Song, Album, or Artist"
-                onChange={this.handleTermChange}
-                onKeyPress={this.handleKeyPress} />
-        <a  onClick={this.search}>SEARCH</a>
+  };
+  return (
+    <div className="SearchBar">
+      <input
+        placeholder="Enter A Song, Album, or Artist"
+        onChange={handleTermChange}
+        onKeyPress={handleKeyPress}
+      />
+      <div className="SearchButton" onClick={() => search()}>
+        SEARCH
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default SearchBar;

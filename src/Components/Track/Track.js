@@ -1,27 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./Track.css";
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Context } from "../../store/globalContext";
 
 const Track = props => {
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
+  // const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
 
-  const addTrack = () => {
-    props.onAdd(props.track);
-  };
-  const removeTrack = () => {
-    props.onRemove(props.track);
-  };
-  const renderAction = () => {
-    if (props.isRemoval) {
-      return (
-        <i
-          className="Track-action fa fa-minus-circle"
-          onClick={removeTrack}
-        ></i>
-      );
-    }
-    return <PlusCircleOutlined onClick={addTrack} className="Track-addTrack" />;
-  };
+  const { addTrack, removeTrack } = useContext(Context);
+
   return (
     <div className="Track" key={props.track.id}>
       <div className="Track-cover-preview">
@@ -42,7 +28,17 @@ const Track = props => {
           {props.track.artist} | {props.track.album}
         </p>
       </div>
-      {renderAction()}
+      {props.isRemoval ? (
+        <DeleteOutlined
+          onClick={() => removeTrack(props.track)}
+          className="Track-icon"
+        />
+      ) : (
+        <PlusCircleOutlined
+          onClick={() => addTrack(props.track)}
+          className="Track-icon"
+        />
+      )}
     </div>
   );
 };
