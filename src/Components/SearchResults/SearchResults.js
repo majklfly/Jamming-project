@@ -3,7 +3,6 @@ import "./SearchResults.css";
 import TrackList from "../TrackList/TrackList";
 
 const SearchResults = props => {
-  console.log("results", props.searchResults);
   return (
     <div className="SearchResults">
       <h2>Results</h2>

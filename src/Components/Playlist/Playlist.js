@@ -1,32 +1,30 @@
-import React from 'react';
-import './Playlist.css';
-import TrackList from '../TrackList/TrackList'
+import React, { useContext } from "react";
+import "./Playlist.css";
+import TrackList from "../TrackList/TrackList";
 
-class Playlist extends React.Component {
-    constructor(props) {
-        super(props);
+import { Context } from "../App/App";
 
-        this.handleNameChange = this.handleNameChange.bind(this);
-    }
+const Playlist = props => {
+  const globalContext = useContext(Context);
 
-    // Updates Playlist name to value user inputs
-    handleNameChange(event) {
-        this.props.onNameChange(event.target.value);
-    }
+  console.log(globalContext.globalState.tracks);
 
-    render() {
-        return(
-            <div className="Playlist">
-                <input  defaultValue={this.props.playlistName}
-                        onChange={this.handleNameChange}/>
-                    <TrackList  tracks={this.props.playlistTracks}
-                                isRemoval={true}
-                                onRemove={this.props.onRemove}/>
-                <a  className="Playlist-save"
-                    onClick={this.props.onSave}>SAVE TO SPOTIFY</a>
-            </div>
-        );
-    }
-}
+  const handleNameChange = event => {
+    props.onNameChange(event.target.value);
+  };
+  return (
+    <div className="Playlist">
+      <input defaultValue={props.playlistName} onChange={handleNameChange} />
+      <TrackList
+        tracks={globalContext.globalState.tracks}
+        isRemoval={true}
+        onRemove={props.onRemove}
+      />
+      <a className="Playlist-save" onClick={props.onSave}>
+        SAVE TO SPOTIFY
+      </a>
+    </div>
+  );
+};
 
 export default Playlist;

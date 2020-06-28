@@ -6,6 +6,7 @@ const TrackList = props => {
   return (
     <div className="TrackList">
       {props.tracks.map(track => {
+        console.log(track);
         return (
           <Track
             key={track.id}

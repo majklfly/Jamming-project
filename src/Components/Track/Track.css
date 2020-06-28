@@ -1,7 +1,11 @@
 .Track {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+  margin-bottom: 5px;
+  position: relative;
 }
 
 .Track-action {
@@ -13,25 +17,32 @@
   background-color: rgba(0, 0, 0, 0);
   color: #fff;
 }
-
+.Track-album-cover {
+  position: absolute;
+  display: flex;
+  background-color: red;
+  left: 20px;
+  bottom: 50%;
+  transform: translateY(50%);
+}
 .Track-action:hover {
   color: rgba(265, 265, 265, .5);
 }
-
 .Track-information {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 72px;
+  margin-left: 10px;
 }
-
-.Track-information h3 {
-  margin-bottom: .22rem;
+.Track-information-container {
+  width: 70%;
+  margin-left: 10%;
 }
-
-.Track-information p {
-  font-size: .83rem;
-  font-weight: 300;
-  color: rgba(256, 256, 256, 0.8);
+.Track-artist {
+  font-size: 0.8rem;
+  padding-left: 10px;
+}
+.Track-addTrack {
+  display: flex;
 }
