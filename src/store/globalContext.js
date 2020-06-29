@@ -1,6 +1,8 @@
 import createDataContext from "./createDataContext";
 
-export const initialState = {};
+export const initialState = {
+  tracks: []
+};
 
 export const globalReducer = (state, action) => {
   switch (action.type) {

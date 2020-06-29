@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./SearchResults.css";
 import TrackList from "../TrackList/TrackList";
 
-import { Context } from "../../store/globalContext";
+import { Context } from "../../store/fetchDataContext";
 
 const SearchResults = props => {
   const { state } = useContext(Context);
@@ -10,7 +10,7 @@ const SearchResults = props => {
   return (
     <div className="SearchResults">
       <h2>Search Results</h2>
-      <TrackList tracks={state.playlist} />
+      {state.tracks && <TrackList tracks={state.tracks} />}
     </div>
   );
 };

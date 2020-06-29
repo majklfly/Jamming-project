@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+
+import { Context } from "../../store/fetchDataContext";
 
 import "./styles.css";
 
@@ -7,6 +9,12 @@ import SearchResults from "../../Components/SearchResults/SearchResults";
 import Playlist from "../../Components/Playlist/Playlist";
 
 const HomeScreen = () => {
+  const { getToken } = useContext(Context)
+
+  useEffect(() => {
+    getToken()
+  }, [])
+
   return (
     <div>
       <h1>
@@ -24,3 +32,4 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
+

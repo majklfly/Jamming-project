@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./Playlist.css";
 import TrackList from "../TrackList/TrackList";
-import Spotify from "../../util/Spotify";
+import { spotifySavePlaylist } from '../../api/Spotify'
 
 import { Context } from "../../store/globalContext";
 
@@ -14,13 +14,8 @@ const Playlist = props => {
   };
 
   const savePlaylist = () => {
-    const trackURIs = this.state.playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist(nameChange, trackURIs).then(() => {
-      this.setState({
-        playlistName: "New Playlist",
-        playlistTracks: []
-      });
-    });
+    const trackURIs = state.tracks.map(track => track.uri);
+    spotifySavePlaylist(nameChange, trackURIs)
   };
 
   return (

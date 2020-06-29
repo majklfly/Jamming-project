@@ -13,7 +13,7 @@ const Track = props => {
       <div className="Track-cover-preview">
         <img
           className="Track-album-cover"
-          src={props.track.cover}
+          src={props.track.album.images[2].url}
           alt="album cover"
         />
       </div>
@@ -25,7 +25,7 @@ const Track = props => {
         )}
 
         <p className="Track-artist">
-          {props.track.artist} | {props.track.album}
+          {props.track.artists[0].name} | {props.track.album.name}
         </p>
       </div>
       {props.isRemoval ? (
