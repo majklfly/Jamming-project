@@ -4,11 +4,13 @@ import "./App.css";
 import HomeScreen from "./Screens/HomeScreen";
 
 import { Provider as GlobalProvider } from "./store/globalContext";
-import { Provider as FetchProvider } from './store/fetchDataContext';
+import { Provider as FetchProvider } from "./store/fetchDataContext";
 
 const App = () => {
+
   return (
-    <><FetchProvider>
+    <>
+      <FetchProvider>
         <GlobalProvider>
           <HomeScreen />
         </GlobalProvider>

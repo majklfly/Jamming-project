@@ -6,30 +6,38 @@ import "./styles.css";
 
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import SearchResults from "../../Components/SearchResults/SearchResults";
+
 import Playlist from "../../Components/Playlist/Playlist";
+import { UserBoard } from "../../Components/UserBoard/UserBoard";
 
 const HomeScreen = () => {
-  const { getToken } = useContext(Context)
+  const { state, getToken } = useContext(Context);
 
   useEffect(() => {
-    getToken()
-  }, [])
+    getToken();
+  }, []);
 
   return (
     <div>
-      <h1>
-        Ja<span className="highlight">mm</span>ing
-      </h1>
-      <div className="App">
-        <SearchBar />
-        <div className="App-playlist">
-          <SearchResults />
-          <Playlist />
-        </div>
-      </div>
+      {state.token && (
+        <>
+          <h1>
+            Ja<span className="highlight">mm</span>ing
+          </h1>
+          <div className="App">
+            <div className="Header">
+              <SearchBar />
+              <UserBoard />
+            </div>
+            <div className="App-playlist">
+              <SearchResults />
+              <Playlist />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
 
 export default HomeScreen;
-

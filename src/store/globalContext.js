@@ -1,7 +1,7 @@
 import createDataContext from "./createDataContext";
 
 export const initialState = {
-  tracks: []
+  tracks: [],
 };
 
 export const globalReducer = (state, action) => {
@@ -11,7 +11,7 @@ export const globalReducer = (state, action) => {
     case "remove_track":
       return {
         ...state,
-        tracks: state.tracks.filter(track => track.id !== action.track.id)
+        tracks: state.tracks.filter((track) => track.id !== action.track.id),
       };
     case "set_playlist":
       return { ...state, playlist: action.list };
@@ -20,20 +20,20 @@ export const globalReducer = (state, action) => {
   }
 };
 
-const addTrack = dispatch => {
-  return track => {
+const addTrack = (dispatch) => {
+  return (track) => {
     dispatch({ type: "add_track", track });
   };
 };
 
-const setPlaylist = dispatch => {
-  return list => {
+const setPlaylist = (dispatch) => {
+  return (list) => {
     dispatch({ type: "set_playlist", list });
   };
 };
 
-const removeTrack = dispatch => {
-  return track => {
+const removeTrack = (dispatch) => {
+  return (track) => {
     dispatch({ type: "remove_track", track });
   };
 };
@@ -43,7 +43,7 @@ export const { Context, Provider } = createDataContext(
   {
     addTrack,
     setPlaylist,
-    removeTrack
+    removeTrack,
   },
   initialState
 );
