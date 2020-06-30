@@ -47,7 +47,7 @@ const getToken = (dispatch) => {
     const hasAccessToken = window.location.href.match(/access_token=([^&]*)/);
     const hasExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
     if (hasAccessToken && hasExpiresIn) {
-      const accessToken = hasAccessToken[1];
+      let accessToken = hasAccessToken[1];
       const expiresIn = Number(hasExpiresIn[1]);
       window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
       window.history.pushState("Access Token", null, "/");
@@ -56,7 +56,7 @@ const getToken = (dispatch) => {
       dispatch({ type: "get_userdata", payload: response });
     } else {
       const scopes = encodeURIComponent(
-        "user-read-private user-read-email user-modify-playback-state"
+        "user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing"
       );
       const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=${scopes}&redirect_uri=${redirectUri}`;
       window.location = accessUrl;

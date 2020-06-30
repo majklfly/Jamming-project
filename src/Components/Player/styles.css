@@ -1,4 +1,4 @@
-.userBoardContainer {
+.PlayerContainer {
   width: 40vw;
   min-width: 400px;
   height: 200px;
@@ -10,4 +10,19 @@
   flex-direction: row;
   justify-content: space-around;
   padding-top: 2vw;
+  position: relative;
+}
+.playerContainerIMG {
+  width: 60px;
+  height: 60px;
+}
+
+.playIcon {
+  position: absolute;
+  font-size: 3rem;
+}
+.iconPosition {
+  position: absolute;
+  left: 46%;
+  bottom: 120px;
 }

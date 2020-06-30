@@ -5,7 +5,7 @@ import Track from "../Track/Track";
 const TrackList = (props) => {
   return (
     <div className="TrackList">
-      {props.tracks.length > 0 &&
+      {props.tracks > 0 &&
         props.tracks.map((track) => {
           return (
             <Track key={track.id} track={track} isRemoval={props.isRemoval} />

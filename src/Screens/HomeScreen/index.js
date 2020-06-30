@@ -1,7 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { Context } from "../../store/fetchDataContext";
+import { Context as fetchDataContext } from "../../store/fetchDataContext";
+import { Context as playerContext } from "../../store/playerContext";
 
 import "./styles.css";
 
@@ -9,14 +10,20 @@ import SearchBar from "../../Components/SearchBar/SearchBar";
 import SearchResults from "../../Components/SearchResults/SearchResults";
 
 import Playlist from "../../Components/Playlist/Playlist";
-import { UserBoard } from "../../Components/UserBoard/UserBoard";
+import { PlayerDataContainer } from "../../Components/PlayerDataContainer/PlayerDataContainer";
 
 const HomeScreen = () => {
-  const { state, getToken, cleanErrorMessage } = useContext(Context);
+  const { state, getToken, cleanErrorMessage } = useContext(fetchDataContext);
+  const { getCurrentPlayback } = useContext(playerContext);
 
   useEffect(() => {
     getToken();
-  }, []);
+    getPlayerData();
+  }, []); //eslint-disable-line
+
+  const getPlayerData = () => {
+    state.token && getCurrentPlayback(state.token);
+  };
 
   return (
     <div>
@@ -49,7 +56,7 @@ const HomeScreen = () => {
           <div className="App">
             <div className="Header">
               <SearchBar />
-              <UserBoard />
+              <PlayerDataContainer />
             </div>
             <AnimatePresence>
               {state.error && (
