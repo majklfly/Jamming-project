@@ -1,14 +1,135 @@
+body,
+html,
+#root {
+  height: 100%;
+}
+
+html {
+  font-size: 18px;
+}
+
+h1 {
+  padding: 0.77rem 0;
+  background-color: #010c3f;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.88rem;
+  color: #fff;
+}
+
+h1 .highlight {
+  color: #6c41ec;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.55rem;
+}
+
+.TopContainer {
+  display: flex;
+  flex-direction: row;
+}
+.TopContainer h1 {
+  width: 100%;
+}
+
+.userBoardInfo {
+  position: absolute;
+  height: 60px;
+  width: 250px;
+  display: flex;
+  top: 30px;
+  right: 10px;
+}
+
+.userBoardInfo h3 {
+  font-size: 1.4rem;
+  position: absolute;
+  top: -15px;
+  color: white;
+}
+
+.userBoardInfo h5 {
+  font-size: 0.7rem;
+  top: 18px;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+.userBoardIMG {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.App {
+  height: 100%;
+  padding: 0 17% 10% 17%;
+  background-image: url("../../assets/background_photo_desktop.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.Header {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .App-playlist {
   display: flex;
   justify-content: space-between;
   width: 90vw;
   margin-top: -5%;
 }
-.Header {
-  width: 100vw;
+.errorMessage {
+  position: fixed;
+  background-color: rgba(217, 30, 24, 1);
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-left: 50%;
+  border-radius: 10px;
+  width: 50vw;
+  bottom: 20px;
+  text-align: center;
+  height: 40px;
+}
+
+@media only screen and (max-width: 1020px) {
+  .App-playlist {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .Header {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .userBoardInfo h3 {
+    opacity: 0;
+  }
+  .userBoardInfo h5 {
+    opacity: 0;
+  }
 }

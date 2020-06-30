@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./SearchBar.css";
 
 import { Context as GlobalContext } from "../../store/globalContext";
-import { Context as DataContext } from '../../store/fetchDataContext'
+import { Context as DataContext } from "../../store/fetchDataContext";
 
 const SearchBar = () => {
   const [term, setTerm] = useState("");
@@ -10,16 +10,16 @@ const SearchBar = () => {
   const { state, spotifySearch } = useContext(DataContext);
 
   const search = () => {
-    spotifySearch(term, state.token).then(response => {
+    spotifySearch(term, state.token).then((response) => {
       setPlaylist(response);
     });
   };
 
-  const handleTermChange = event => {
+  const handleTermChange = (event) => {
     setTerm(event.target.value);
   };
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       search();
     }

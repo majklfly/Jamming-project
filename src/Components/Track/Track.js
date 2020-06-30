@@ -3,7 +3,7 @@ import "./Track.css";
 import { PlusCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Context } from "../../store/globalContext";
 
-const Track = props => {
+const Track = (props) => {
   // const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
 
   const { addTrack, removeTrack } = useContext(Context);

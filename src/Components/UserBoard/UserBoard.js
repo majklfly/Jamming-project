@@ -12,22 +12,7 @@ export const UserBoard = () => {
     <>
       {state.userdata && (
         <div className="userBoardContainer">
-          <div className="userBoardInfo">
-            <h3>{state.userdata.display_name}</h3>
-            <h5>
-              {state.userdata.followers.total !== 1
-                ? state.userdata.followers.total + " followers"
-                : state.userdata.followers.total + " follower"}
-            </h5>
-          </div>
-          <div className="userBoardLinks">
-            <img
-              className="userBoardIMG"
-              src={state.userdata.images[0].url}
-              alt="profile_img"
-            />
-            <a href={state.userdata.external_urls.spotify}>Open Spotify</a>
-          </div>
+          <div className="userBoardLinks"></div>
         </div>
       )}
     </>

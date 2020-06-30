@@ -7,7 +7,6 @@ const TrackList = (props) => {
     <div className="TrackList">
       {props.tracks.length > 0 &&
         props.tracks.map((track) => {
-          console.log("track", track);
           return (
             <Track key={track.id} track={track} isRemoval={props.isRemoval} />
           );
