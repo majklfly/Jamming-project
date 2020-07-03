@@ -2,7 +2,7 @@ import createDataContext from "./createDataContext";
 import axios from "axios";
 
 const clientId = "91676161ae734812a2d87002a4246b27";
-const redirectUri = "https://jamming-project.herokuapp.com/";
+const redirectUri = "http://localhost:3000/";
 
 const initialState = {
   loading: false,
