@@ -36,7 +36,7 @@ const HomeScreen = () => {
         <>
           <div className="TopContainer">
             <h1>
-              Ja<span className="highlight">mm</span>ing
+              Ja<span className="highlight">mmm</span>ing
             </h1>
             {state.userdata && (
               <div className="userBoardInfo">
