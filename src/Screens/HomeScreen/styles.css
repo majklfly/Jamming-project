@@ -67,6 +67,18 @@ h2 {
   right: 5px;
   cursor: pointer;
 }
+.ShowPlayerListIcon {
+  position: absolute;
+  top: 20px;
+  left: -50px;
+  width: 70px;
+  color: whitesmoke;
+  font-size: 1.5rem;
+}
+.ShowPlayerListIcon:hover {
+  color: #6c41ec;
+  cursor: pointer;
+}
 
 .App {
   height: 100%;
@@ -109,7 +121,6 @@ h2 {
   text-align: center;
   height: 40px;
 }
-
 @media only screen and (max-width: 1020px) {
   .App-playlist {
     align-items: center;

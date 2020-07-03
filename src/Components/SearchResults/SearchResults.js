@@ -4,7 +4,7 @@ import TrackList from "../TrackList/TrackList";
 
 import { Context } from "../../store/fetchDataContext";
 
-const SearchResults = props => {
+const SearchResults = (props) => {
   const { state } = useContext(Context);
 
   return (

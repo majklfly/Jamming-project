@@ -1,18 +1,14 @@
 import React, { useState, useContext } from "react";
 import "./SearchBar.css";
 
-import { Context as GlobalContext } from "../../store/globalContext";
 import { Context as DataContext } from "../../store/fetchDataContext";
 
 const SearchBar = () => {
   const [term, setTerm] = useState("");
-  const { setPlaylist } = useContext(GlobalContext);
   const { state, spotifySearch } = useContext(DataContext);
 
   const search = () => {
-    spotifySearch(term, state.token).then((response) => {
-      setPlaylist(response);
-    });
+    spotifySearch(term, state.token);
   };
 
   const handleTermChange = (event) => {

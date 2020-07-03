@@ -1,12 +1,26 @@
 import React, { useContext } from "react";
 import "./Track.css";
-import { PlusCircleOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  PlusCircleOutlined,
+  DeleteOutlined,
+  PlayCircleOutlined,
+} from "@ant-design/icons";
 import { Context } from "../../store/globalContext";
+import { Context as DataContext } from "../../store/fetchDataContext";
 
 const Track = (props) => {
-  // const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
+  const { addTrack, removeTrack, resetAnimation } = useContext(Context);
+  const { state, playSpecificSong, getCurrentPlayback } = useContext(
+    DataContext
+  );
 
-  const { addTrack, removeTrack } = useContext(Context);
+  const playTheSong = (uri) => {
+    playSpecificSong(state.token, uri);
+    resetAnimation(true);
+    setTimeout(function () {
+      getCurrentPlayback(state.token);
+    }, 400);
+  };
 
   return (
     <div className="Track" key={props.track.id}>
@@ -34,10 +48,16 @@ const Track = (props) => {
           className="Track-icon"
         />
       ) : (
-        <PlusCircleOutlined
-          onClick={() => addTrack(props.track)}
-          className="Track-icon"
-        />
+        <div className="Track-icons-container">
+          <PlayCircleOutlined
+            className="Track-icon"
+            onClick={() => playTheSong(props.track.uri)}
+          />
+          <PlusCircleOutlined
+            onClick={() => addTrack(props.track)}
+            className="Track-icon"
+          />
+        </div>
       )}
     </div>
   );

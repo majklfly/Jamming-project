@@ -4,11 +4,16 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/free-brands-svg-icons": "^5.13.1",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "antd": "^4.3.5",
     "axios": "^0.19.2",
     "framer-motion": "^2.0.0-beta.77",
     "qs": "^6.9.4",
     "react": "^16.8.6",
+    "react-compound-timer": "^1.2.0",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.4.1"
   },

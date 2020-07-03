@@ -1,0 +1,31 @@
+.Track-Open {
+  position: relative;
+  width: 45vw;
+  height: auto;
+  min-height: 100px;
+}
+.Track-img-open {
+  position: absolute;
+  width: 80px;
+  right: 7%;
+}
+.Track-Open-Header {
+  width: 70%;
+  padding-left: 5%;
+  cursor: pointer;
+}
+.Track-Open-Detail {
+  display: flex;
+  margin-top: 2%;
+  margin-left: 7%;
+  margin-right: 10%;
+}
+.Track-Open-Detail-Icon {
+  opacity: 0.05;
+  transition: 1s;
+  padding-right: 4px;
+}
+.Track-Open-Detail-Icon:hover {
+  opacity: 1;
+  color: white;
+}

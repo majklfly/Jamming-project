@@ -1,5 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompactDisc, faHome } from "@fortawesome/free-solid-svg-icons";
 
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
 import { Context as playerContext } from "../../store/playerContext";
@@ -11,10 +14,12 @@ import SearchResults from "../../Components/SearchResults/SearchResults";
 
 import Playlist from "../../Components/Playlist/Playlist";
 import { PlayerDataContainer } from "../../Components/PlayerDataContainer/PlayerDataContainer";
+import { UserPlayLists } from "../../Components/UserPlaylists/UserPlaylists";
 
 const HomeScreen = () => {
   const { state, getToken, cleanErrorMessage } = useContext(fetchDataContext);
   const { getCurrentPlayback } = useContext(playerContext);
+  const [showUserPlaylist, setShowUserPlaylist] = useState(false);
 
   useEffect(() => {
     getToken();
@@ -35,6 +40,19 @@ const HomeScreen = () => {
             </h1>
             {state.userdata && (
               <div className="userBoardInfo">
+                <div onClick={() => setShowUserPlaylist(!showUserPlaylist)}>
+                  {showUserPlaylist ? (
+                    <FontAwesomeIcon
+                      icon={faHome}
+                      className="ShowPlayerListIcon"
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faCompactDisc}
+                      className="ShowPlayerListIcon"
+                    />
+                  )}
+                </div>
                 <h3>{state.userdata.display_name}</h3>
                 <h5>
                   {state.userdata.product} |{" "}
@@ -76,7 +94,7 @@ const HomeScreen = () => {
             </AnimatePresence>
             <div className="App-playlist">
               <SearchResults />
-              <Playlist />
+              {showUserPlaylist ? <UserPlayLists /> : <Playlist />}
             </div>
           </div>
         </>

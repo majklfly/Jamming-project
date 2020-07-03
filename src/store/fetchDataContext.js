@@ -19,6 +19,10 @@ export const fetchReducer = (state, action) => {
       return { ...state, tracks: action.payload };
     case "error_message":
       return { ...state, error: action.payload };
+    case "get_playerdata":
+      return { ...state, playerdata: action.payload };
+    case "get_albums":
+      return { ...state, albums: action.payload };
     default:
       return state;
   }
@@ -56,7 +60,7 @@ const getToken = (dispatch) => {
       dispatch({ type: "get_userdata", payload: response });
     } else {
       const scopes = encodeURIComponent(
-        "user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing"
+        "user-read-private user-library-read user-modify-playback-state user-read-playback-state user-read-currently-playing"
       );
       const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=${scopes}&redirect_uri=${redirectUri}`;
       window.location = accessUrl;
@@ -80,6 +84,12 @@ const spotifySearch = (dispatch) => {
           },
         }
       );
+      if (response.status === 200 && response.data.tracks.items.length === 0) {
+        dispatch({
+          type: "error_message",
+          payload: "Not in the database, mate",
+        });
+      }
       response.status === 200
         ? dispatch({ type: "get_tracks", payload: response.data.tracks.items })
         : console.log(response.status);
@@ -87,8 +97,21 @@ const spotifySearch = (dispatch) => {
   };
 };
 
+const playSpecificSong = (dispatch) => {
+  return async (token, trackURI) => {
+    await axios.put(
+      `https://api.spotify.com/v1/me/player/play`,
+      JSON.stringify({ uris: [trackURI] }),
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
+};
+
 const addTracksToPlaylist = async (userId, playlistId, trackURIs, token) => {
-  console.log("triggered");
   const response = await axios.post(
     `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
     JSON.stringify({ uris: trackURIs }),
@@ -135,6 +158,40 @@ const spotifySavePlaylist = (dispatch) => {
   };
 };
 
+export const getCurrentPlayback = (dispatch) => {
+  return (token) => {
+    axios
+      .get("https://api.spotify.com/v1/me/player", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) =>
+        res.data
+          ? dispatch({
+              type: "get_playerdata",
+              payload: res.data,
+            })
+          : dispatch({
+              type: "error_message",
+              payload: "Turn on your spotify, mate",
+            })
+      );
+  };
+};
+
+export const getAlbums = (dispatch) => {
+  return async (token) => {
+    const response = await axios.get(`https://api.spotify.com/v1/me/albums`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch({
+      type: "get_albums",
+      payload: response.data,
+    });
+  };
+};
+
 export const { Context, Provider } = createDataContext(
   fetchReducer,
   {
@@ -143,6 +200,9 @@ export const { Context, Provider } = createDataContext(
     spotifySearch,
     spotifySavePlaylist,
     cleanErrorMessage,
+    getCurrentPlayback,
+    getAlbums,
+    playSpecificSong,
   },
   initialState
 );

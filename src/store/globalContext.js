@@ -1,8 +1,11 @@
 import createDataContext from "./createDataContext";
 
-export const initialState = {};
+export const initialState = {
+  tracks: [],
+};
 
 export const globalReducer = (state, action) => {
+  console.log("triggered", action);
   switch (action.type) {
     case "add_track":
       return { ...state, tracks: [...state.tracks, action.track] };
@@ -13,6 +16,8 @@ export const globalReducer = (state, action) => {
       };
     case "set_playlist":
       return { ...state, playlist: action.list };
+    case "reset_animation":
+      return { ...state, resetAnimation: action.value };
     default:
       return state;
   }
@@ -30,6 +35,12 @@ const setPlaylist = (dispatch) => {
   };
 };
 
+const resetAnimation = (dispatch) => {
+  return (value) => {
+    dispatch({ type: "reset_animation", value });
+  };
+};
+
 const removeTrack = (dispatch) => {
   return (track) => {
     dispatch({ type: "remove_track", track });
@@ -42,6 +53,7 @@ export const { Context, Provider } = createDataContext(
     addTrack,
     setPlaylist,
     removeTrack,
+    resetAnimation,
   },
   initialState
 );
