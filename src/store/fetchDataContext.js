@@ -1,9 +1,6 @@
 import createDataContext from "./createDataContext";
 import axios from "axios";
 
-const clientId = "91676161ae734812a2d87002a4246b27";
-const redirectUri = "http://localhost:3000/";
-
 const initialState = {
   loading: false,
   error: false,
@@ -47,24 +44,22 @@ const fetchUserData = async (accessToken) => {
 };
 
 const getToken = (dispatch) => {
+  const clientId = "91676161ae734812a2d87002a4246b27";
+  const redirectUri = "http://localhost:3000";
+  const scopes = encodeURIComponent(
+    "user-read-private user-library-read user-modify-playback-state user-read-playback-state user-read-currently-playing"
+  );
+  const encodedURI = encodeURIComponent(redirectUri);
   return async () => {
-    const hasAccessToken = window.location.href.match(/access_token=([^&]*)/);
-    const hasExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
-    if (hasAccessToken && hasExpiresIn) {
-      let accessToken = hasAccessToken[1];
-      const expiresIn = Number(hasExpiresIn[1]);
-      window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
-      window.history.pushState("Access Token", null, "/");
-      const response = await fetchUserData(accessToken);
-      dispatch({ type: "get_token", payload: accessToken });
-      dispatch({ type: "get_userdata", payload: response });
-    } else {
-      const scopes = encodeURIComponent(
-        "user-read-private user-library-read user-modify-playback-state user-read-playback-state user-read-currently-playing"
-      );
-      const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=${scopes}&redirect_uri=${redirectUri}`;
-      window.location = accessUrl;
-    }
+    axios
+      .get(
+        `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=${scopes}&redirect_uri=${encodedURI}`,
+        {
+          headers: { "Access-Control-Allow-Origin": "*" },
+        }
+      )
+      .then((res) => console.log(res))
+      .catch((e) => console.log(e));
   };
 };
 

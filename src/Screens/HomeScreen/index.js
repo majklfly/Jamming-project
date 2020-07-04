@@ -8,6 +8,7 @@ import { Context as fetchDataContext } from "../../store/fetchDataContext";
 import { Context as playerContext } from "../../store/playerContext";
 
 import "./styles.css";
+import SpotifyLogin from "react-spotify-login";
 
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import SearchResults from "../../Components/SearchResults/SearchResults";
@@ -21,8 +22,10 @@ const HomeScreen = () => {
   const { getCurrentPlayback } = useContext(playerContext);
   const [showUserPlaylist, setShowUserPlaylist] = useState(false);
 
+  const onSuccess = (response) => console.log(response);
+  const onFailure = (response) => console.error(response);
+
   useEffect(() => {
-    getToken();
     getPlayerData();
   }, []); //eslint-disable-line
 
@@ -102,7 +105,13 @@ const HomeScreen = () => {
     return (
       <div>
         <h1>Missing Token</h1>
-        {console.log(state)}
+        <SpotifyLogin
+          clientId={"91676161ae734812a2d87002a4246b27"}
+          redirectUri={"http://localhost:3000"}
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+        />
+        ,
       </div>
     );
   }
