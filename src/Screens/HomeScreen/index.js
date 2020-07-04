@@ -18,9 +18,7 @@ import { UserPlayLists } from "../../Components/UserPlaylists/UserPlaylists";
 import { WelcomeScreen } from "../WelcomeScreen/WelcomeScreen";
 
 const HomeScreen = () => {
-  const { state, tokenSuccess, cleanErrorMessage } = useContext(
-    fetchDataContext
-  );
+  const { state, cleanErrorMessage } = useContext(fetchDataContext);
   const { getCurrentPlayback } = useContext(playerContext);
   const [showUserPlaylist, setShowUserPlaylist] = useState(false);
 
@@ -62,13 +60,7 @@ const HomeScreen = () => {
                   ? state.userdata.followers.total + " followers"
                   : state.userdata.followers.total + " follower"}
               </h5>
-              <a href={state.userdata.external_urls.spotify}>
-                <img
-                  className="userBoardIMG"
-                  src={state.userdata.images[0].url}
-                  alt="profile_img"
-                />
-              </a>
+              <a href={state.userdata.external_urls.spotify}>Hello</a>
             </div>
           )}
         </div>
