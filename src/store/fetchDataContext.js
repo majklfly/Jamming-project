@@ -43,23 +43,9 @@ const fetchUserData = async (accessToken) => {
   }
 };
 
-const getToken = (dispatch) => {
-  const clientId = "91676161ae734812a2d87002a4246b27";
-  const redirectUri = "http://localhost:3000";
-  const scopes = encodeURIComponent(
-    "user-read-private user-library-read user-modify-playback-state user-read-playback-state user-read-currently-playing"
-  );
-  const encodedURI = encodeURIComponent(redirectUri);
-  return async () => {
-    axios
-      .get(
-        `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=${scopes}&redirect_uri=${encodedURI}`,
-        {
-          headers: { "Access-Control-Allow-Origin": "*" },
-        }
-      )
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e));
+const tokenSuccess = (dispatch) => {
+  return (token) => {
+    dispatch({ type: "get_token", payload: token });
   };
 };
 
@@ -191,7 +177,7 @@ export const { Context, Provider } = createDataContext(
   fetchReducer,
   {
     fetchUserData,
-    getToken,
+    tokenSuccess,
     spotifySearch,
     spotifySavePlaylist,
     cleanErrorMessage,

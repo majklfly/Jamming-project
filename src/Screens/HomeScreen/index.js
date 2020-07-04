@@ -18,11 +18,13 @@ import { PlayerDataContainer } from "../../Components/PlayerDataContainer/Player
 import { UserPlayLists } from "../../Components/UserPlaylists/UserPlaylists";
 
 const HomeScreen = () => {
-  const { state, getToken, cleanErrorMessage } = useContext(fetchDataContext);
+  const { state, tokenSuccess, cleanErrorMessage } = useContext(
+    fetchDataContext
+  );
   const { getCurrentPlayback } = useContext(playerContext);
   const [showUserPlaylist, setShowUserPlaylist] = useState(false);
 
-  const onSuccess = (response) => console.log(response);
+  const onSuccess = (response) => tokenSuccess(response.access_token);
   const onFailure = (response) => console.error(response);
 
   useEffect(() => {
