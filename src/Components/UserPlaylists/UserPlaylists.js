@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
 
 import { Album } from "../Album/Album";
+import "./UserPlaylists.css";
 
 export const UserPlayLists = () => {
   const { state, getAlbums } = useContext(fetchDataContext);
@@ -15,7 +16,9 @@ export const UserPlayLists = () => {
       <h2>Albums</h2>
       {state.albums &&
         state.albums.items.map((album) => (
-          <Album data={album} key={album.album.id} />
+          <div className="Albums-container">
+            <Album data={album} key={album.album.id} />
+          </div>
         ))}
     </div>
   );

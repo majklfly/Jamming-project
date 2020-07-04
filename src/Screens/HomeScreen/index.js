@@ -7,6 +7,8 @@ import { faCompactDisc, faHome } from "@fortawesome/free-solid-svg-icons";
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
 import { Context as playerContext } from "../../store/playerContext";
 
+import empty_profile from "../../assets/empty_profile.png";
+
 import "./styles.css";
 
 import SearchBar from "../../Components/SearchBar/SearchBar";
@@ -21,6 +23,8 @@ const HomeScreen = () => {
   const { state, cleanErrorMessage } = useContext(fetchDataContext);
   const { getCurrentPlayback } = useContext(playerContext);
   const [showUserPlaylist, setShowUserPlaylist] = useState(false);
+
+  console.log(empty_profile);
 
   useEffect(() => {
     getPlayerData();
@@ -53,14 +57,32 @@ const HomeScreen = () => {
                   />
                 )}
               </div>
-              <h3>{state.userdata.display_name}</h3>
+              {state.userdata.display_name.length > 20 ? (
+                <h4>{state.userdata.display_name}</h4>
+              ) : (
+                <h3>{state.userdata.display_name}</h3>
+              )}
               <h5>
                 {state.userdata.product} |{" "}
                 {state.userdata.followers.total !== 1
                   ? state.userdata.followers.total + " followers"
                   : state.userdata.followers.total + " follower"}
               </h5>
-              <a href={state.userdata.external_urls.spotify}>Hello</a>
+              <a href={state.userdata.external_urls.spotify}>
+                {state.userdata.images.length > 0 ? (
+                  <img
+                    className="userBoardIMG"
+                    src={state.userdata.images[0].url}
+                    alt="profile_img1"
+                  />
+                ) : (
+                  <img
+                    className="userBoardIMG"
+                    src={empty_profile}
+                    alt="profile_img2"
+                  />
+                )}
+              </a>
             </div>
           )}
         </div>

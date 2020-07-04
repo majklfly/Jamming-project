@@ -49,6 +49,11 @@ h2 {
   top: -15px;
   color: white;
 }
+.userBoardInfo h4 {
+  color: white;
+  position: absolute;
+  top: -10px;
+}
 
 .userBoardInfo h5 {
   font-size: 0.7rem;

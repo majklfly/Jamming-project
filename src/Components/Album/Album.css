@@ -7,7 +7,7 @@
 .Track-img-open {
   position: absolute;
   width: 80px;
-  right: 7%;
+  right: 12%;
 }
 .Track-Open-Header {
   width: 70%;
@@ -28,4 +28,7 @@
 .Track-Open-Detail-Icon:hover {
   opacity: 1;
   color: white;
+}
+.Track-container {
+  background-color: red;
 }
