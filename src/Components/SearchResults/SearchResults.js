@@ -10,7 +10,9 @@ const SearchResults = (props) => {
   return (
     <div className="SearchResults">
       <h2>Search Results</h2>
-      {state.tracks && <TrackList tracks={state.tracks} />}
+      <div className="SearchResults-content">
+        {state.tracks && <TrackList tracks={state.tracks} />}
+      </div>
     </div>
   );
 };

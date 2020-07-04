@@ -97,6 +97,7 @@ h2 {
 }
 .Header {
   width: 90vw;
+  margin-top: 350px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -129,6 +130,7 @@ h2 {
 
   .Header {
     width: 80vw;
+    margin-top: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,11 +138,15 @@ h2 {
   }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 800px) {
   .userBoardInfo h3 {
     opacity: 0;
   }
   .userBoardInfo h5 {
     opacity: 0;
+  }
+  .ShowPlayerListIcon {
+    position: absolute;
+    left: 20vw;
   }
 }

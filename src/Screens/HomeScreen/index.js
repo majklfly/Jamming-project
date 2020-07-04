@@ -8,7 +8,6 @@ import { Context as fetchDataContext } from "../../store/fetchDataContext";
 import { Context as playerContext } from "../../store/playerContext";
 
 import "./styles.css";
-import SpotifyLogin from "react-spotify-login";
 
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import SearchResults from "../../Components/SearchResults/SearchResults";
@@ -16,6 +15,7 @@ import SearchResults from "../../Components/SearchResults/SearchResults";
 import Playlist from "../../Components/Playlist/Playlist";
 import { PlayerDataContainer } from "../../Components/PlayerDataContainer/PlayerDataContainer";
 import { UserPlayLists } from "../../Components/UserPlaylists/UserPlaylists";
+import { WelcomeScreen } from "../WelcomeScreen/WelcomeScreen";
 
 const HomeScreen = () => {
   const { state, tokenSuccess, cleanErrorMessage } = useContext(
@@ -24,14 +24,12 @@ const HomeScreen = () => {
   const { getCurrentPlayback } = useContext(playerContext);
   const [showUserPlaylist, setShowUserPlaylist] = useState(false);
 
-  const onSuccess = (response) => tokenSuccess(response.access_token);
-  const onFailure = (response) => console.error(response);
-
   useEffect(() => {
     getPlayerData();
   }, []); //eslint-disable-line
 
   const getPlayerData = () => {
+    console.log(state.token);
     state.token && getCurrentPlayback(state.token);
   };
 
@@ -106,14 +104,7 @@ const HomeScreen = () => {
   } else {
     return (
       <div>
-        <h1>Missing Token</h1>
-        <SpotifyLogin
-          clientId={"91676161ae734812a2d87002a4246b27"}
-          redirectUri={"https://jamming-project.herokuapp.com/"}
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-        />
-        ,
+        <WelcomeScreen />
       </div>
     );
   }

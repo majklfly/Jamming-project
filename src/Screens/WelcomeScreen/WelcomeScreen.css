@@ -1,0 +1,47 @@
+.WelcomeScreen {
+  height: 100vh;
+  background-image: url("../../assets/background_photo_desktop.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+.welcome-text {
+  align-self: center;
+  margin-top: 10vh;
+}
+.welcome-text h2 {
+  font-size: 2rem;
+}
+.welcome-text h3 {
+  text-align: center;
+}
+.enterButton {
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-top: 10%;
+  width: 200px;
+  height: 80px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 40px;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0px 0px 30px white;
+}
+.enterButton:hover {
+  color: #6c41ec;
+  border-color: #6c41ec;
+}
+.enterButton:focus {
+  box-shadow: 0px 0px 80px white;
+}
+.footer {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%);
+  color: white;
+}

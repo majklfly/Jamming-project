@@ -44,8 +44,10 @@ const fetchUserData = async (accessToken) => {
 };
 
 const tokenSuccess = (dispatch) => {
-  return (token) => {
+  return async (token) => {
     dispatch({ type: "get_token", payload: token });
+    const response = await fetchUserData(token);
+    dispatch({ type: "get_userdata", payload: response });
   };
 };
 

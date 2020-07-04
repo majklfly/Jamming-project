@@ -32,8 +32,9 @@ const Playlist = (props) => {
         <h2>Create Playlist</h2>
         <input placeholder="New Name" onChange={handleNameChange} />
       </div>
-
-      <TrackList tracks={globalState.tracks} isRemoval={true} />
+      <div className="Playlist-content">
+        <TrackList tracks={globalState.tracks} isRemoval={true} />
+      </div>
       <div className="Playlist-save" onClick={savePlaylist}>
         SAVE TO SPOTIFY
       </div>
