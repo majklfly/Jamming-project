@@ -107,7 +107,7 @@ const HomeScreen = () => {
         <h1>Missing Token</h1>
         <SpotifyLogin
           clientId={"91676161ae734812a2d87002a4246b27"}
-          redirectUri={"http://localhost:3000"}
+          redirectUri={"https://jamming-project.herokuapp.com/"}
           onSuccess={onSuccess}
           onFailure={onFailure}
         />
