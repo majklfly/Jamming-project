@@ -1,23 +1,27 @@
 import React, { useContext, useEffect } from "react";
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
 
-import { Album } from "../Album/Album";
-import "./UserPlaylists.css";
+import { Playlist } from "../Playlist/Playlist";
 
-export const UserPlayLists = () => {
-  const { state, getAlbums } = useContext(fetchDataContext);
+export const UserPlaylists = () => {
+  const { state, getCurrentPlaylists } = useContext(fetchDataContext);
+
+  const recievePlaylists = async () => {
+    const token = await localStorage.getItem("token");
+    getCurrentPlaylists(token);
+  };
 
   useEffect(() => {
-    getAlbums(state.token);
+    recievePlaylists();
   }, []); //eslint-disable-line
 
   return (
     <div className="SearchResults">
-      <h2>Albums</h2>
-      {state.albums &&
-        state.albums.items.map((album) => (
-          <div className="Albums-container">
-            <Album data={album} key={album.album.id} />
+      <h2>Playlists</h2>
+      {state.playlistdata &&
+        state.playlistdata.items.map((list) => (
+          <div className="Albums-container" key={list.id}>
+            <Playlist data={list} key={list.uri} />
           </div>
         ))}
     </div>

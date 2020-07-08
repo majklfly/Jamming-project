@@ -2,10 +2,13 @@ import React, { useEffect, useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompactDisc, faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCompactDisc,
+  faList,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
-import { Context as playerContext } from "../../store/playerContext";
 
 import empty_profile from "../../assets/empty_profile.png";
 
@@ -14,28 +17,62 @@ import "./styles.css";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import SearchResults from "../../Components/SearchResults/SearchResults";
 
-import Playlist from "../../Components/Playlist/Playlist";
+import { CreatePlaylist } from "../../Components/CreatePlaylist/CreatePlaylist";
 import { PlayerDataContainer } from "../../Components/PlayerDataContainer/PlayerDataContainer";
-import { UserPlayLists } from "../../Components/UserPlaylists/UserPlaylists";
+import { UserAlbums } from "../../Components/UserAlbums/UserAlbums";
+import { UserPlaylists } from "../../Components/UserPlaylists/UserPlaylists";
 import { WelcomeScreen } from "../WelcomeScreen/WelcomeScreen";
 
 const HomeScreen = () => {
-  const { state, cleanErrorMessage } = useContext(fetchDataContext);
-  const { getCurrentPlayback } = useContext(playerContext);
-  const [showUserPlaylist, setShowUserPlaylist] = useState(false);
+  const {
+    state,
+    cleanErrorMessage,
+    getCurrentPlayback,
+    getUserData,
+  } = useContext(fetchDataContext);
+  const [showUserPlaylist, setShowUserPlaylist] = useState(true);
+  const [showUserAlbums, setShowUserAlbums] = useState(false);
+  const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
 
-  console.log(empty_profile);
+  const checkExpiration = async () => {
+    const date = new Date();
+    const currentTime = date.getTime();
+    const expTime = localStorage.getItem("expTime");
+    currentTime > expTime && localStorage.removeItem("token");
+  };
 
   useEffect(() => {
     getPlayerData();
   }, []); //eslint-disable-line
 
-  const getPlayerData = () => {
-    console.log(state.token);
-    state.token && getCurrentPlayback(state.token);
+  const getPlayerData = async () => {
+    const token = await localStorage.getItem("token");
+    getCurrentPlayback(token);
+    getUserData(token);
+    checkExpiration();
   };
 
-  if (state.token) {
+  const renderPlayLists = () => {
+    setShowUserPlaylist(true);
+    setShowUserAlbums(false);
+    setShowCreatePlaylist(false);
+  };
+
+  const renderAlbums = () => {
+    setShowUserPlaylist(false);
+    setShowUserAlbums(true);
+    setShowCreatePlaylist(false);
+  };
+
+  const renderCreatePlaylist = () => {
+    setShowUserPlaylist(false);
+    setShowUserAlbums(false);
+    setShowCreatePlaylist(true);
+  };
+
+  const token = localStorage.getItem("token");
+
+  if (token) {
     return (
       <>
         <div className="TopContainer">
@@ -44,19 +81,21 @@ const HomeScreen = () => {
           </h1>
           {state.userdata && (
             <div className="userBoardInfo">
-              <div onClick={() => setShowUserPlaylist(!showUserPlaylist)}>
-                {showUserPlaylist ? (
-                  <FontAwesomeIcon
-                    icon={faHome}
-                    className="ShowPlayerListIcon"
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    icon={faCompactDisc}
-                    className="ShowPlayerListIcon"
-                  />
-                )}
-              </div>
+              <FontAwesomeIcon
+                icon={faPlus}
+                className="createPlaylistIcon"
+                onClick={() => renderCreatePlaylist()}
+              />
+              <FontAwesomeIcon
+                icon={faList}
+                className="ShowPlayerListIcon"
+                onClick={() => renderPlayLists()}
+              />
+              <FontAwesomeIcon
+                icon={faCompactDisc}
+                className="ShowAlbumsIcon"
+                onClick={() => renderAlbums()}
+              />
               {state.userdata.display_name.length > 20 ? (
                 <h4>{state.userdata.display_name}</h4>
               ) : (
@@ -110,7 +149,9 @@ const HomeScreen = () => {
           </AnimatePresence>
           <div className="App-playlist">
             <SearchResults />
-            {showUserPlaylist ? <UserPlayLists /> : <Playlist />}
+            {showUserAlbums && <UserAlbums />}
+            {showUserPlaylist && <UserPlaylists />}
+            {showCreatePlaylist && <CreatePlaylist />}
           </div>
         </div>
       </>

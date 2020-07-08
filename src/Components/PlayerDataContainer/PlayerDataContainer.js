@@ -5,6 +5,8 @@ import { Player } from "../Player/Player";
 import { Context as playerContext } from "../../store/playerContext";
 import { Context as userDataContext } from "../../store/fetchDataContext";
 
+const token = localStorage.getItem("token");
+
 export const PlayerDataContainer = (props) => {
   const [newSong, setNewSong] = useState(false);
   const { nextSong, previousSong } = useContext(playerContext);
@@ -12,21 +14,21 @@ export const PlayerDataContainer = (props) => {
 
   const forwardSong = () => {
     setNewSong(!newSong);
-    nextSong(dataState.token);
-    getCurrentPlayback(dataState.token);
+    nextSong(token);
+    getCurrentPlayback(token);
   };
 
   const backwardSong = () => {
     setNewSong(!newSong);
-    previousSong(dataState.token);
-    getCurrentPlayback(dataState.token);
+    previousSong(token);
+    getCurrentPlayback(token);
   };
 
   useEffect(() => {
-    getCurrentPlayback(dataState.token);
+    getCurrentPlayback(token);
   }, []); //eslint-disable-line
   return (
-    <div>
+    <div data-test="PlayerDataContainer">
       {dataState.playerdata && (
         <Player
           data={dataState.playerdata}

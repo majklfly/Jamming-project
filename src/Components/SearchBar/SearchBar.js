@@ -5,10 +5,12 @@ import { Context as DataContext } from "../../store/fetchDataContext";
 
 const SearchBar = () => {
   const [term, setTerm] = useState("");
-  const { state, spotifySearch } = useContext(DataContext);
+  const { spotifySearch } = useContext(DataContext);
 
-  const search = () => {
-    spotifySearch(term, state.token);
+  const search = async () => {
+    const token = await localStorage.getItem("token");
+    spotifySearch(term, token);
+    setTerm("");
   };
 
   const handleTermChange = (event) => {
@@ -21,9 +23,10 @@ const SearchBar = () => {
     }
   };
   return (
-    <div className="SearchBar">
+    <div className="SearchBar" data-test="SearchBar">
       <input
         placeholder="Enter A Song, Album, or Artist"
+        value={term}
         onChange={handleTermChange}
         onKeyPress={handleKeyPress}
       />

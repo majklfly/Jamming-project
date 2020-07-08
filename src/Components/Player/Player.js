@@ -16,10 +16,12 @@ import { Context as userDataContext } from "../../store/fetchDataContext";
 import { Context as playerContext } from "../../store/playerContext";
 import { Context as globalContext } from "../../store/globalContext";
 
+const token = localStorage.getItem("token");
+
 export const Player = (props) => {
   const controls = useAnimation();
 
-  const { state: dataState, getCurrentPlayback } = useContext(userDataContext);
+  const { getCurrentPlayback } = useContext(userDataContext);
   const { state: globalState, resetAnimation } = useContext(globalContext);
   const { playSong, pauseSong } = useContext(playerContext);
   const [isPlaying, setIsPlaying] = useState(props.data.is_playing);
@@ -31,14 +33,12 @@ export const Player = (props) => {
   const width = -window.outerWidth / 2.75;
 
   const updateStateofPlayer = () => {
-    getCurrentPlayback(dataState.token);
+    getCurrentPlayback(token);
   };
 
   setTimeout(function () {
     updateStateofPlayer();
   }, 5000);
-
-  console.log(globalState);
 
   if (globalState.resetAnimation) {
     controls.set({
@@ -51,11 +51,11 @@ export const Player = (props) => {
   const togglePlayButton = (currentState, pause, start) => {
     if (currentState) {
       pause();
-      pauseSong(dataState.token);
+      pauseSong(token);
       controls.stop();
     } else {
       start();
-      playSong(dataState.token);
+      playSong(token);
       controls.start({
         x: 0,
         transition: { duration: restInSec },
@@ -70,7 +70,7 @@ export const Player = (props) => {
       transition: { duration: restInSec },
     });
     setTimeout(function () {
-      props.getCurrentPlayback(dataState.token);
+      props.getCurrentPlayback(token);
     }, 400);
   };
 
@@ -81,7 +81,7 @@ export const Player = (props) => {
       transition: { duration: restInSec },
     });
     setTimeout(function () {
-      props.getCurrentPlayback(dataState.token);
+      props.getCurrentPlayback(token);
     }, 400);
   };
 
@@ -92,7 +92,7 @@ export const Player = (props) => {
       transition: { duration: restInSec },
     });
     setTimeout(function () {
-      props.getCurrentPlayback(dataState.token);
+      props.getCurrentPlayback(token);
     }, 400);
   };
 
@@ -104,7 +104,7 @@ export const Player = (props) => {
   }
 
   return (
-    <div className="PlayerContainer">
+    <div className="PlayerContainer" data-test="PlayerContainer">
       <Timer
         initialTime={rest}
         direction="backward"

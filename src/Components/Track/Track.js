@@ -4,32 +4,44 @@ import {
   PlusCircleOutlined,
   DeleteOutlined,
   PlayCircleOutlined,
+  InfoCircleOutlined,
 } from "@ant-design/icons";
 import { Context } from "../../store/globalContext";
 import { Context as DataContext } from "../../store/fetchDataContext";
 
 const Track = (props) => {
   const { addTrack, removeTrack, resetAnimation } = useContext(Context);
-  const { state, playSpecificSong, getCurrentPlayback } = useContext(
-    DataContext
-  );
+  const { playSpecificSong, getCurrentPlayback } = useContext(DataContext);
 
-  const playTheSong = (uri) => {
-    playSpecificSong(state.token, uri);
+  const playTheSong = async (uri) => {
+    const token = await localStorage.getItem("token");
+    playSpecificSong(token, uri);
     resetAnimation(true);
     setTimeout(function () {
-      getCurrentPlayback(state.token);
+      getCurrentPlayback(token);
     }, 400);
   };
 
   return (
     <div className="Track" key={props.track.id}>
       <div className="Track-cover-preview">
-        <img
-          className="Track-album-cover"
-          src={props.track.album.images[2].url}
-          alt="album cover"
-        />
+        {props.track.album ? (
+          <img
+            className="Track-album-cover"
+            src={props.track.album.images[2].url}
+            alt="album cover"
+          />
+        ) : (
+          <>
+            {props.track.images.length > 0 && (
+              <img
+                className="Track-album-cover"
+                src={props.track.images[2].url}
+                alt="album cover"
+              />
+            )}
+          </>
+        )}
       </div>
       <div className="Track-information-container">
         {props.track.name.length < 30 ? (
@@ -39,7 +51,8 @@ const Track = (props) => {
         )}
 
         <p className="Track-artist">
-          {props.track.artists[0].name} | {props.track.album.name}
+          {props.track.album &&
+            props.track.artists[0].name + " | " + props.track.album.name}
         </p>
       </div>
       {props.isRemoval ? (
@@ -49,14 +62,28 @@ const Track = (props) => {
         />
       ) : (
         <div className="Track-icons-container">
-          <PlayCircleOutlined
-            className="Track-icon"
-            onClick={() => playTheSong(props.track.uri)}
-          />
-          <PlusCircleOutlined
-            onClick={() => addTrack(props.track)}
-            className="Track-icon"
-          />
+          {props.track.album ? (
+            <>
+              {" "}
+              <PlayCircleOutlined
+                className="Track-icon"
+                onClick={() => playTheSong(props.track.uri)}
+              />
+              <PlusCircleOutlined
+                onClick={() => addTrack(props.track)}
+                className="Track-icon"
+              />
+            </>
+          ) : (
+            <>
+              <a
+                href={props.track.external_urls.spotify}
+                style={{ color: "white" }}
+              >
+                <InfoCircleOutlined className="Track-icon" />
+              </a>
+            </>
+          )}
         </div>
       )}
     </div>

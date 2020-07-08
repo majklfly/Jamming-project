@@ -19,12 +19,16 @@ export const WelcomeScreen = () => {
           This Page is designated to interact with Spotify.
         </h2>
         <h3 style={{ color: "white" }}>
-          You need to turn on your player to fully enjoy the app
+          1) To enjoy fully the website, please play a song on your device.
+        </h3>
+        <h3 style={{ color: "white" }}>
+          2) With enter you will be asked to login to your account and will
+          recieve a token, which will be valid and stored for 30 minutes.
         </h3>
         <SpotifyLogin
           clientId={"91676161ae734812a2d87002a4246b27"}
-          redirectUri={"https://jamming-project.herokuapp.com/"}
-          scope={"user-read-private"}
+          redirectUri={"http://localhost:3000/"}
+          scope="playlist-read-private user-modify-playback-state"
           onSuccess={onSuccess}
           onFailure={onFailure}
           buttonText="Enter"

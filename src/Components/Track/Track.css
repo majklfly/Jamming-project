@@ -18,10 +18,14 @@
   background-color: rgba(0, 0, 0, 0);
   color: #fff;
 }
+.Track-cover-preview {
+  display: flex;
+  width: 50px;
+}
 .Track-album-cover {
   position: absolute;
   display: flex;
-  background-color: red;
+  height: 65px;
   left: 20px;
   bottom: 50%;
   transform: translateY(50%);
@@ -41,6 +45,7 @@
 }
 .Track-artist {
   font-size: 0.8rem;
+  padding-bottom: 10px;
 }
 .Track-icon {
   display: flex;

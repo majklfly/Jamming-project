@@ -5,7 +5,6 @@ export const initialState = {
 };
 
 export const globalReducer = (state, action) => {
-  console.log("triggered", action);
   switch (action.type) {
     case "add_track":
       return { ...state, tracks: [...state.tracks, action.track] };
