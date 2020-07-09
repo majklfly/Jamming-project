@@ -5,7 +5,7 @@ import "./WelcomeScreen.css";
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
 
 const scopes = encodeURIComponent(
-  "playlist-read-private user-modify-playback-state"
+  "user-modify-playback-state user-read-playback-state user-read-private user-read-email user-library-read user-read-currently-playing"
 );
 
 export const WelcomeScreen = () => {

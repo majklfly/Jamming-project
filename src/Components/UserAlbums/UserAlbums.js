@@ -16,8 +16,6 @@ export const UserAlbums = () => {
     recieveAlbums();
   }, []); //eslint-disable-line
 
-  console.log(state.albums.items);
-
   return (
     <div className="SearchResults" data-test="UserAlbumsContainer">
       <h2>Albums</h2>

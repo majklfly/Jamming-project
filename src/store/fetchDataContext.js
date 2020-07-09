@@ -50,6 +50,8 @@ export const fetchReducer = (state, action) => {
       return { ...state, searchdata: action.payload };
     case "error_message":
       return { ...state, error: action.payload };
+    case "get_devices":
+      return { ...state, devices: action.payload };
     case "get_playerdata":
       return { ...state, playerdata: action.payload };
     case "get_playlistdata":
@@ -64,6 +66,12 @@ export const fetchReducer = (state, action) => {
 const cleanErrorMessage = (dispatch) => {
   return () => {
     dispatch({ type: "error_message", payload: null });
+  };
+};
+
+const dispatchErrorMessage = (dispatch) => {
+  return (message) => {
+    dispatch({ type: "error_message", payload: `${message}` });
   };
 };
 
@@ -216,7 +224,7 @@ export const getCurrentPlaylists = (dispatch) => {
 export const getCurrentPlayback = (dispatch) => {
   return (token) => {
     axios
-      .get("https://api.spotify.com/v1/me/player", {
+      .get("https://api.spotify.com/v1/me/player/currently-playing", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) =>
@@ -270,6 +278,7 @@ export const { Context, Provider } = createDataContext(
     spotifySearch,
     spotifySavePlaylist,
     cleanErrorMessage,
+    dispatchErrorMessage,
     getCurrentPlayback,
     getAlbums,
     playSpecificSong,

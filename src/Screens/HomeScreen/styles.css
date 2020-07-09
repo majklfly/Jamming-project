@@ -131,6 +131,11 @@ h2 {
   align-items: center;
   flex-wrap: wrap;
 }
+.Header h3 {
+  text-align: center;
+  width: 50%;
+}
+
 .App-playlist {
   display: flex;
   justify-content: space-between;

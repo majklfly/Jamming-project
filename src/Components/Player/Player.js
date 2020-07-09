@@ -16,8 +16,6 @@ import { Context as userDataContext } from "../../store/fetchDataContext";
 import { Context as playerContext } from "../../store/playerContext";
 import { Context as globalContext } from "../../store/globalContext";
 
-const token = localStorage.getItem("token");
-
 export const Player = (props) => {
   const controls = useAnimation();
 
@@ -32,8 +30,9 @@ export const Player = (props) => {
   const restInSec = rest / 1000;
   const width = -window.outerWidth / 2.75;
 
-  const updateStateofPlayer = () => {
-    getCurrentPlayback(token);
+  const updateStateofPlayer = async () => {
+    const token = await localStorage.getItem("token");
+    token && getCurrentPlayback(token);
   };
 
   setTimeout(function () {
@@ -48,7 +47,8 @@ export const Player = (props) => {
     resetAnimation(false);
   }
 
-  const togglePlayButton = (currentState, pause, start) => {
+  const togglePlayButton = async (currentState, pause, start) => {
+    const token = await localStorage.getItem("token");
     if (currentState) {
       pause();
       pauseSong(token);
@@ -64,7 +64,8 @@ export const Player = (props) => {
     setIsPlaying(!currentState);
   };
 
-  const endOfSong = () => {
+  const endOfSong = async () => {
+    const token = await localStorage.getItem("token");
     controls.set({
       x: width,
       transition: { duration: restInSec },
@@ -74,7 +75,8 @@ export const Player = (props) => {
     }, 400);
   };
 
-  const pressNext = () => {
+  const pressNext = async () => {
+    const token = await localStorage.getItem("token");
     props.forwardSong();
     controls.set({
       x: width,
@@ -85,7 +87,8 @@ export const Player = (props) => {
     }, 400);
   };
 
-  const pressPrevious = () => {
+  const pressPrevious = async () => {
+    const token = await localStorage.getItem("token");
     props.backwardSong();
     controls.set({
       x: width,
