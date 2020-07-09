@@ -76,7 +76,6 @@ const HomeScreen = () => {
   if (cookies.token) {
     return (
       <>
-        <h1>Tomasek ma velky pero</h1>
         {state.userdata && (
           <>
             <div className="TopContainer">
@@ -132,7 +131,6 @@ const HomeScreen = () => {
             <div className="App">
               <div className="Header">
                 <SearchBar />
-                <PlayerDataContainer />
               </div>
               <AnimatePresence>
                 {state.error && (
