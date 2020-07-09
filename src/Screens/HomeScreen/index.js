@@ -126,6 +126,8 @@ const HomeScreen = () => {
           )}
         </div>
 
+        {console.log(state.userdata)}
+
         <div className="App">
           <div className="Header">
             <SearchBar />
