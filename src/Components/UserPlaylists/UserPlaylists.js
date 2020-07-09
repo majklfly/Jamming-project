@@ -2,13 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
 
 import { Playlist } from "../Playlist/Playlist";
+import { useCookies } from "react-cookie";
 
 export const UserPlaylists = (props) => {
   const { state, getCurrentPlaylists } = useContext(fetchDataContext);
+  const [cookies] = useCookies(["token"]);
 
-  const recievePlaylists = async () => {
-    const token = await localStorage.getItem("token");
-    getCurrentPlaylists(token);
+  const recievePlaylists = () => {
+    getCurrentPlaylists(cookies.token);
   };
 
   useEffect(() => {

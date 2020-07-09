@@ -3,13 +3,14 @@ import { Context as fetchDataContext } from "../../store/fetchDataContext";
 
 import { Album } from "../Album/Album";
 import "./UserAlbums.css";
+import { useCookies } from "react-cookie";
 
 export const UserAlbums = () => {
   const { state, getAlbums } = useContext(fetchDataContext);
+  const [cookies] = useCookies(["token"]);
 
   const recieveAlbums = async () => {
-    const token = await localStorage.getItem("token");
-    getAlbums(token);
+    getAlbums(cookies.token);
   };
 
   useEffect(() => {

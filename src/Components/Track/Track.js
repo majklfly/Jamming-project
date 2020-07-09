@@ -8,17 +8,18 @@ import {
 } from "@ant-design/icons";
 import { Context } from "../../store/globalContext";
 import { Context as DataContext } from "../../store/fetchDataContext";
+import { useCookies } from "react-cookie";
 
 const Track = (props) => {
   const { addTrack, removeTrack, resetAnimation } = useContext(Context);
   const { playSpecificSong, getCurrentPlayback } = useContext(DataContext);
+  const [cookies] = useCookies(["token"]);
 
-  const playTheSong = async (uri) => {
-    const token = await localStorage.getItem("token");
-    playSpecificSong(token, uri);
+  const playTheSong = (uri) => {
+    playSpecificSong(cookies.token, uri);
     resetAnimation(true);
     setTimeout(function () {
-      getCurrentPlayback(token);
+      getCurrentPlayback(cookies.token);
     }, 400);
   };
 

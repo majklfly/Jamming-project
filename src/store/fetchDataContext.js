@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   loading: false,
   error: false,
+  token: "",
   albums: {
     items: [
       {
@@ -96,7 +97,6 @@ const setExpTime = () => {
 
 const tokenSuccess = (dispatch) => {
   return async (token) => {
-    localStorage.setItem("token", token);
     setExpTime();
     dispatch({ type: "get_token", payload: token });
     const response = await fetchUserData(token);

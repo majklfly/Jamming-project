@@ -1,4 +1,5 @@
 import React from "react";
+import { CookiesProvider } from "react-cookie";
 
 import HomeScreen from "./Screens/HomeScreen";
 
@@ -9,13 +10,15 @@ import { Provider as PlayerProvider } from "./store/playerContext";
 const App = () => {
   return (
     <>
-      <PlayerProvider>
-        <FetchProvider>
-          <GlobalProvider>
-            <HomeScreen />
-          </GlobalProvider>
-        </FetchProvider>
-      </PlayerProvider>
+      <CookiesProvider>
+        <PlayerProvider>
+          <FetchProvider>
+            <GlobalProvider>
+              <HomeScreen />
+            </GlobalProvider>
+          </FetchProvider>
+        </PlayerProvider>
+      </CookiesProvider>
     </>
   );
 };

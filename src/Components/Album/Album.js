@@ -1,23 +1,23 @@
 import React, { useState, useContext } from "react";
 import "./Album.css";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCookies } from "react-cookie";
 
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { Context as DataContext } from "../../store/fetchDataContext";
 import { Context as globalContext } from "../../store/globalContext";
 
-const token = localStorage.getItem("token");
-
 export const Album = (props) => {
   const [showAlbumDetails, setShowAlbumDetails] = useState(false);
   const { resetAnimation } = useContext(globalContext);
   const { playSpecificSong, getCurrentPlayback } = useContext(DataContext);
+  const [cookies] = useCookies(["token"]);
 
   const playTheSong = (uri) => {
-    playSpecificSong(token, uri);
+    playSpecificSong(cookies.token, uri);
     resetAnimation(true);
     setTimeout(function () {
-      getCurrentPlayback(token);
+      getCurrentPlayback(cookies.token);
     }, 400);
   };
 

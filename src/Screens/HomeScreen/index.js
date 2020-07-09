@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCookies } from "react-cookie";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -30,21 +31,27 @@ const HomeScreen = () => {
   const [showUserPlaylist, setShowUserPlaylist] = useState(true);
   const [showUserAlbums, setShowUserAlbums] = useState(false);
   const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
   const checkExpiration = async () => {
     const date = new Date();
     const currentTime = date.getTime();
     const expTime = localStorage.getItem("expTime");
-    currentTime > expTime && localStorage.removeItem("token");
+    currentTime > expTime && removeCookie();
   };
+
+  useEffect(() => {
+    state.token && setCookie("token", state.token, { path: "/" });
+  }, [state.token]); //eslint-disable-line
+
+  console.log(cookies.token);
 
   useEffect(() => {
     getPlayerData();
   }, []); //eslint-disable-line
 
-  const getPlayerData = async () => {
-    const token = await localStorage.getItem("token");
-    getUserData(token);
+  const getPlayerData = () => {
+    getUserData(cookies.token);
     checkExpiration();
   };
 
@@ -66,9 +73,7 @@ const HomeScreen = () => {
     setShowCreatePlaylist(true);
   };
 
-  const token = localStorage.getItem("token");
-
-  if (token) {
+  if (cookies.token) {
     return (
       <>
         {state.userdata && (
@@ -126,6 +131,7 @@ const HomeScreen = () => {
             <div className="App">
               <div className="Header">
                 <SearchBar />
+                <PlayerDataContainer />
               </div>
               <AnimatePresence>
                 {state.error && (

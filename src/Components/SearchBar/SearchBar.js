@@ -2,14 +2,15 @@ import React, { useState, useContext } from "react";
 import "./SearchBar.css";
 
 import { Context as DataContext } from "../../store/fetchDataContext";
+import { useCookies } from "react-cookie";
 
 const SearchBar = () => {
   const [term, setTerm] = useState("");
   const { spotifySearch } = useContext(DataContext);
+  const [cookies] = useCookies(["token"]);
 
-  const search = async () => {
-    const token = await localStorage.getItem("token");
-    spotifySearch(term, token);
+  const search = () => {
+    spotifySearch(term, cookies.token);
     setTerm("");
   };
 

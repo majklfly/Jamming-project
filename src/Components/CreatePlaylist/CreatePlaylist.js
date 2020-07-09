@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
 import "./CreatePlaylist.css";
 import TrackList from "../TrackList/TrackList";
+import { useCookies } from "react-cookie";
 
 import { Context as GlobalContext } from "../../store/globalContext";
 import { Context as FetchDataContext } from "../../store/fetchDataContext";
 
 export const CreatePlaylist = (props) => {
   const [nameChange, setNameChange] = useState("");
+  const [cookies] = useCookies(["token"]);
   const { state: globalState } = useContext(GlobalContext);
   const { state: userState, spotifySavePlaylist } = useContext(
     FetchDataContext
@@ -17,9 +19,13 @@ export const CreatePlaylist = (props) => {
   };
 
   const savePlaylist = async () => {
-    const token = await localStorage.getItem("token");
     const trackURIs = globalState.tracks.map((track) => track.uri);
-    spotifySavePlaylist(nameChange, trackURIs, userState.userdata.id, token);
+    spotifySavePlaylist(
+      nameChange,
+      trackURIs,
+      userState.userdata.id,
+      cookies.token
+    );
   };
 
   return (

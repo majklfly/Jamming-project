@@ -4,6 +4,7 @@ import Timer from "react-compound-timer";
 import "./styles.css";
 
 import { Progress } from "antd";
+import { useCookies } from "react-cookie";
 
 import {
   CaretRightOutlined,
@@ -12,32 +13,21 @@ import {
   LeftOutlined,
 } from "@ant-design/icons";
 
-import { Context as userDataContext } from "../../store/fetchDataContext";
 import { Context as playerContext } from "../../store/playerContext";
 import { Context as globalContext } from "../../store/globalContext";
 
 export const Player = (props) => {
   const controls = useAnimation();
-
-  const { getCurrentPlayback } = useContext(userDataContext);
   const { state: globalState, resetAnimation } = useContext(globalContext);
   const { playSong, pauseSong } = useContext(playerContext);
   const [isPlaying, setIsPlaying] = useState(props.data.is_playing);
+  const [cookies] = useCookies(["token"]);
 
   const full = props.data.item.duration_ms;
   const rest = props.data.item.duration_ms - props.data.progress_ms;
   const current = rest / (full / 100);
   const restInSec = rest / 1000;
   const width = -window.outerWidth / 2.75;
-
-  const updateStateofPlayer = async () => {
-    const token = await localStorage.getItem("token");
-    token && getCurrentPlayback(token);
-  };
-
-  setTimeout(function () {
-    updateStateofPlayer();
-  }, 5000);
 
   if (globalState.resetAnimation) {
     controls.set({
@@ -47,15 +37,14 @@ export const Player = (props) => {
     resetAnimation(false);
   }
 
-  const togglePlayButton = async (currentState, pause, start) => {
-    const token = await localStorage.getItem("token");
+  const togglePlayButton = (currentState, pause, start) => {
     if (currentState) {
       pause();
-      pauseSong(token);
+      pauseSong(cookies.token);
       controls.stop();
     } else {
       start();
-      playSong(token);
+      playSong(cookies.token);
       controls.start({
         x: 0,
         transition: { duration: restInSec },
@@ -65,37 +54,34 @@ export const Player = (props) => {
   };
 
   const endOfSong = async () => {
-    const token = await localStorage.getItem("token");
     controls.set({
       x: width,
       transition: { duration: restInSec },
     });
     setTimeout(function () {
-      props.getCurrentPlayback(token);
+      props.getCurrentPlayback(cookies.token);
     }, 400);
   };
 
   const pressNext = async () => {
-    const token = await localStorage.getItem("token");
     props.forwardSong();
     controls.set({
       x: width,
       transition: { duration: restInSec },
     });
     setTimeout(function () {
-      props.getCurrentPlayback(token);
+      props.getCurrentPlayback(cookies.token);
     }, 400);
   };
 
   const pressPrevious = async () => {
-    const token = await localStorage.getItem("token");
     props.backwardSong();
     controls.set({
       x: width,
       transition: { duration: restInSec },
     });
     setTimeout(function () {
-      props.getCurrentPlayback(token);
+      props.getCurrentPlayback(cookies.token);
     }, 400);
   };
 

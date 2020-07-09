@@ -4,29 +4,28 @@ import { Player } from "../Player/Player";
 
 import { Context as playerContext } from "../../store/playerContext";
 import { Context as userDataContext } from "../../store/fetchDataContext";
+import { useCookies } from "react-cookie";
 
 export const PlayerDataContainer = (props) => {
   const [newSong, setNewSong] = useState(false);
   const { nextSong, previousSong } = useContext(playerContext);
   const { state: dataState, getCurrentPlayback } = useContext(userDataContext);
+  const [cookies] = useCookies(["token"]);
 
   const forwardSong = async () => {
-    const token = await localStorage.getItem("token");
     setNewSong(!newSong);
-    nextSong(token);
-    getCurrentPlayback(token);
+    nextSong(cookies.token);
+    getCurrentPlayback(cookies.token);
   };
 
   const backwardSong = async () => {
-    const token = await localStorage.getItem("token");
     setNewSong(!newSong);
-    previousSong(token);
-    getCurrentPlayback(token);
+    previousSong(cookies.token);
+    getCurrentPlayback(cookies.token);
   };
 
   const getPlayer = async () => {
-    const token = await localStorage.getItem("token");
-    getCurrentPlayback(token);
+    getCurrentPlayback(cookies.token);
   };
 
   useEffect(() => {
