@@ -29,6 +29,9 @@ export const WelcomeScreen = () => {
           2) With enter you will be asked to login to your account and will
           recieve a token, which will be valid and stored for 30 minutes.
         </h3>
+        <h3 style={{ color: "white" }}>
+          3) This token is stored in the cookies of your browser.
+        </h3>
         <SpotifyLogin
           clientId={"91676161ae734812a2d87002a4246b27"}
           redirectUri={"https://jamming-project.herokuapp.com/"}

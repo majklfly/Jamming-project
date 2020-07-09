@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCookies } from "react-cookie";
+import { useCookies, CookiesProvider } from "react-cookie";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -76,6 +76,7 @@ const HomeScreen = () => {
   if (cookies.token) {
     return (
       <>
+        <h1>Tomasek ma velky pero</h1>
         {state.userdata && (
           <>
             <div className="TopContainer">
