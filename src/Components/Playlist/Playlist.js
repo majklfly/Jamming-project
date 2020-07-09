@@ -42,74 +42,76 @@ export const Playlist = (props) => {
 
   return (
     <div data-test="PlaylistContainer">
-      <AnimatePresence>
-        {showAlbumDetails ? (
-          <motion.div
-            key={props.data.id}
-            className="Track-Open"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2 }}
-          >
-            <div
-              onClick={() => setShowAlbumDetails(!showAlbumDetails)}
-              className="Track-Open-Header"
-              data-test="Track-Open-Header"
+      {props.data && (
+        <AnimatePresence>
+          {showAlbumDetails ? (
+            <motion.div
+              key={props.data.id}
+              className="Track-Open"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 2 }}
             >
-              <img
-                src={props.data.images[0].url}
-                alt="album cover"
-                className="Track-img-open"
-              />
-              <h4>{props.data.name}</h4>
-            </div>
-            <div>
-              {items.map((track) => (
-                <div className="Track-Open-Detail" key={track.track.uri}>
-                  <div className="Track-Open-Detail-Icon">
-                    <PlayCircleOutlined
-                      className="Track-icon"
-                      onClick={() => playTheSong(track.track.uri)}
-                    />
-                  </div>
-                  {track.track.name}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        ) : (
-          <motion.div
-            onClick={() => setShowAlbumDetails(!showAlbumDetails)}
-            key={props.data.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2 }}
-          >
-            <div
-              className="Track"
-              style={{ cursor: "pointer" }}
-              data-test="Track"
-            >
-              <div className="Track-cover-preview">
+              <div
+                onClick={() => setShowAlbumDetails(!showAlbumDetails)}
+                className="Track-Open-Header"
+                data-test="Track-Open-Header"
+              >
                 <img
-                  className="Track-album-cover"
                   src={props.data.images[0].url}
                   alt="album cover"
+                  className="Track-img-open"
                 />
+                <h4>{props.data.name}</h4>
               </div>
-              <div className="Track-information-container">
-                {props.data.name.length < 30 ? (
-                  <h3 className="Track-information">{props.data.name}</h3>
-                ) : (
-                  <p className="Track-information">{props.data.name}</p>
-                )}
+              <div>
+                {items.map((track) => (
+                  <div className="Track-Open-Detail" key={track.track.uri}>
+                    <div className="Track-Open-Detail-Icon">
+                      <PlayCircleOutlined
+                        className="Track-icon"
+                        onClick={() => playTheSong(track.track.uri)}
+                      />
+                    </div>
+                    {track.track.name}
+                  </div>
+                ))}
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          ) : (
+            <motion.div
+              onClick={() => setShowAlbumDetails(!showAlbumDetails)}
+              key={props.data.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 2 }}
+            >
+              <div
+                className="Track"
+                style={{ cursor: "pointer" }}
+                data-test="Track"
+              >
+                <div className="Track-cover-preview">
+                  <img
+                    className="Track-album-cover"
+                    src={props.data.images[0].url}
+                    alt="album cover"
+                  />
+                </div>
+                <div className="Track-information-container">
+                  {props.data.name.length < 30 ? (
+                    <h3 className="Track-information">{props.data.name}</h3>
+                  ) : (
+                    <p className="Track-information">{props.data.name}</p>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
     </div>
   );
 };
