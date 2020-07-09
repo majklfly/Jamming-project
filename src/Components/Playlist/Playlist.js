@@ -33,7 +33,9 @@ export const Playlist = (props) => {
 
   const getItems = async () => {
     const token = await localStorage.getItem("token");
-    getPlaylistItems(props.data.id, token);
+    setTimeout(function () {
+      getPlaylistItems(props.data.id, token);
+    }, 400);
   };
 
   useEffect(() => {
