@@ -17,6 +17,7 @@
     "react": "^16.8.6",
     "react-compound-timer": "^1.2.0",
     "react-dom": "^16.8.6",
+    "react-hooks-testing-library": "^0.6.0",
     "react-scripts": "^3.4.1",
     "react-spotify-login": "^0.9.1"
   },
@@ -40,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.3.0"
   }
 }

@@ -16,13 +16,15 @@ export const UserAlbums = () => {
     recieveAlbums();
   }, []); //eslint-disable-line
 
+  console.log(state.albums.items);
+
   return (
-    <div className="SearchResults">
+    <div className="SearchResults" data-test="UserAlbumsContainer">
       <h2>Albums</h2>
       {state.albums &&
         state.albums.items.map((album) => (
           <div className="Albums-container">
-            <Album data={album} key={album.album.id} />
+            <Album data={album} key={album.album.id} data-test="Albums" />
           </div>
         ))}
     </div>

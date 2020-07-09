@@ -4,11 +4,16 @@ import Track from "../Track/Track";
 
 const TrackList = (props) => {
   return (
-    <div className="TrackList">
+    <div className="TrackList" data-test="TrackList">
       {props.tracks !== undefined &&
         props.tracks.map((track) => {
           return (
-            <Track key={track.id} track={track} isRemoval={props.isRemoval} />
+            <Track
+              key={track.id}
+              track={track}
+              isRemoval={props.isRemoval}
+              data-test="TrackListTrack"
+            />
           );
         })}
     </div>

@@ -3,7 +3,7 @@ import { Context as fetchDataContext } from "../../store/fetchDataContext";
 
 import { Playlist } from "../Playlist/Playlist";
 
-export const UserPlaylists = () => {
+export const UserPlaylists = (props) => {
   const { state, getCurrentPlaylists } = useContext(fetchDataContext);
 
   const recievePlaylists = async () => {
@@ -16,12 +16,12 @@ export const UserPlaylists = () => {
   }, []); //eslint-disable-line
 
   return (
-    <div className="SearchResults">
+    <div className="SearchResults" data-test="userPlaylistsContainer">
       <h2>Playlists</h2>
       {state.playlistdata &&
         state.playlistdata.items.map((list) => (
           <div className="Albums-container" key={list.id}>
-            <Playlist data={list} key={list.uri} />
+            <Playlist data={list} key={list.uri} data-test="Playlist" />
           </div>
         ))}
     </div>

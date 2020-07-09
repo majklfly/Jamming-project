@@ -23,13 +23,14 @@ const Track = (props) => {
   };
 
   return (
-    <div className="Track" key={props.track.id}>
+    <div className="Track" key={props.track.id} data-test="Track">
       <div className="Track-cover-preview">
         {props.track.album ? (
           <img
             className="Track-album-cover"
             src={props.track.album.images[2].url}
             alt="album cover"
+            data-test="Track-album-cover"
           />
         ) : (
           <>
@@ -43,7 +44,10 @@ const Track = (props) => {
           </>
         )}
       </div>
-      <div className="Track-information-container">
+      <div
+        className="Track-information-container"
+        data-test="Track-information-container"
+      >
         {props.track.name.length < 30 ? (
           <h3 className="Track-information">{props.track.name}</h3>
         ) : (

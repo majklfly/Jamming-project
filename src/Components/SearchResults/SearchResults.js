@@ -31,23 +31,36 @@ const SearchResults = (props) => {
   };
 
   return (
-    <div className="SearchResults">
+    <div className="SearchResults" data-test="SearchResults">
       <h2>Search Results</h2>
       <div className="SearchResultsCards">
         <h3 onClick={() => renderTracks()}>Tracks</h3>
-        <h3 onClick={() => renderArtists()}>Artists</h3>
-        <h3 onClick={() => renderAlbums()}>Albums</h3>
+        <h3 data-test="ArtistsButton" onClick={() => renderArtists()}>
+          Artists
+        </h3>
+        <h3 data-test="AlbumsButton" onClick={() => renderAlbums()}>
+          Albums
+        </h3>
       </div>
 
       <div className="SearchResults-content">
         {state.searchdata && showTracks ? (
-          <TrackList tracks={state.searchdata.tracks.items} />
+          <TrackList
+            tracks={state.searchdata.tracks.items}
+            data-test="Tracklist"
+          />
         ) : null}
         {state.searchdata && showAlbums ? (
-          <AlbumList albums={state.searchdata.albums.items} />
+          <AlbumList
+            albums={state.searchdata.albums.items}
+            data-test="AlbumListContainer"
+          />
         ) : null}
         {state.searchdata && showArtists ? (
-          <ArtistsList artists={state.searchdata.artists.items} />
+          <ArtistsList
+            artists={state.searchdata.artists.items}
+            data-test="ArtistsListContainer"
+          />
         ) : null}
       </div>
     </div>

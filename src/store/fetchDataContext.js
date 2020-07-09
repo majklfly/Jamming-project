@@ -4,6 +4,40 @@ import axios from "axios";
 const initialState = {
   loading: false,
   error: false,
+  albums: {
+    items: [
+      {
+        album: {
+          id: null,
+          images: ["", "", ""],
+          name: "",
+          external_urls: {
+            spotify: "",
+          },
+        },
+      },
+    ],
+  },
+  searchdata: {
+    tracks: [
+      {
+        items: {},
+      },
+    ],
+    albums: [
+      {
+        items: {},
+      },
+    ],
+    artists: [
+      {
+        items: {},
+      },
+    ],
+  },
+  playlistdata: {
+    items: [{ id: null, uri: "", images: ["", ""], name: "" }],
+  },
 };
 
 export const fetchReducer = (state, action) => {
