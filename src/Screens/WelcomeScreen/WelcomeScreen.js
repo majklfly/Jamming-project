@@ -27,7 +27,7 @@ export const WelcomeScreen = () => {
         </h3>
         <SpotifyLogin
           clientId={"91676161ae734812a2d87002a4246b27"}
-          redirectUri={"http://localhost:3000/"}
+          redirectUri={"http://jamming-project.herokuapp.com/"}
           scope="playlist-read-private user-modify-playback-state"
           onSuccess={onSuccess}
           onFailure={onFailure}
