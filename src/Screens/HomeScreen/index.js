@@ -126,7 +126,6 @@ const HomeScreen = () => {
             <div className="App">
               <div className="Header">
                 <SearchBar />
-                <PlayerDataContainer />
               </div>
               <AnimatePresence>
                 {state.error && (
