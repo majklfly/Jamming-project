@@ -4,6 +4,10 @@ import "./WelcomeScreen.css";
 
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
 
+const scopes = encodeURIComponent(
+  "playlist-read-private user-modify-playback-state"
+);
+
 export const WelcomeScreen = () => {
   const { tokenSuccess } = useContext(fetchDataContext);
 
@@ -28,7 +32,7 @@ export const WelcomeScreen = () => {
         <SpotifyLogin
           clientId={"91676161ae734812a2d87002a4246b27"}
           redirectUri={"https://jamming-project.herokuapp.com/"}
-          scope="playlist-read-private user-modify-playback-state"
+          scope={scopes}
           onSuccess={onSuccess}
           onFailure={onFailure}
           buttonText="Enter"
