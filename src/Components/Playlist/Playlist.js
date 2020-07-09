@@ -95,11 +95,13 @@ export const Playlist = (props) => {
                 data-test="Track"
               >
                 <div className="Track-cover-preview">
-                  <img
-                    className="Track-album-cover"
-                    src={props.data.images[0].url}
-                    alt="album cover"
-                  />
+                  {props.data.images && (
+                    <img
+                      className="Track-album-cover"
+                      src={props.data.images[0].url}
+                      alt="album cover"
+                    />
+                  )}
                 </div>
                 <div className="Track-information-container">
                   {props.data.name.length < 30 ? (
