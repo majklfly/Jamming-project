@@ -10,9 +10,21 @@ const scopes = encodeURIComponent(
 
 export const WelcomeScreen = () => {
   const { tokenSuccess } = useContext(fetchDataContext);
-
-  const onSuccess = (response) => tokenSuccess(response.access_token);
+  const onSuccess = (response) => enterProject(response);
   const onFailure = (response) => console.error(response);
+
+  const setExpTime = () => {
+    const expTime = new Date();
+    expTime.setMinutes(expTime.getMinutes() + 30);
+    const timeFormated = expTime.getTime();
+    localStorage.setItem("expTime", JSON.stringify(timeFormated));
+  };
+
+  const enterProject = (response) => {
+    tokenSuccess(response.access_token);
+    setExpTime();
+  };
+
   return (
     <div className="WelcomeScreen">
       <h1>

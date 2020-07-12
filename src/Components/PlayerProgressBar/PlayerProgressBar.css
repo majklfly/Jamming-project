@@ -1,0 +1,56 @@
+.ProgressBarContainer {
+  position: absolute;
+  bottom: 5%;
+  width: 90%;
+  left: 5%;
+}
+.progressRange1 {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.progressRange2 {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+/*Chrome*/
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="range"] {
+    overflow: hidden;
+    width: 100%;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border-radius: 5px;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    -webkit-appearance: none;
+    color: #6c41ec;
+    margin-top: -1px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    height: 10px;
+    cursor: pointer;
+    box-shadow: -1000px 0 0 1000px #6c41ec;
+  }
+}
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: #6c41ec;
+}
+input[type="range"]::-moz-range-track {
+  background-color: transparent;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: #6c41ec;
+}
+input[type="range"]::-ms-fill-upper {
+  background-color: transparent;
+}

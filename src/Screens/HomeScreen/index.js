@@ -23,11 +23,13 @@ import { PlayerDataContainer } from "../../Components/PlayerDataContainer/Player
 import { UserAlbums } from "../../Components/UserAlbums/UserAlbums";
 import { UserPlaylists } from "../../Components/UserPlaylists/UserPlaylists";
 import { WelcomeScreen } from "../WelcomeScreen/WelcomeScreen";
+import { Context as GlobalContext } from "../../store/globalContext";
 
 const HomeScreen = () => {
   const { state, cleanErrorMessage, getUserData } = useContext(
     fetchDataContext
   );
+  const { state: globalState } = useContext(GlobalContext);
   const [showUserPlaylist, setShowUserPlaylist] = useState(true);
   const [showUserAlbums, setShowUserAlbums] = useState(false);
   const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
@@ -37,8 +39,6 @@ const HomeScreen = () => {
     const date = new Date();
     const currentTime = date.getTime();
     const expTime = localStorage.getItem("expTime");
-    console.log(currentTime);
-    console.log(expTime);
     currentTime > expTime && removeCookie();
   };
 
@@ -52,8 +52,13 @@ const HomeScreen = () => {
 
   const getPlayerData = () => {
     checkExpiration();
+    console.log(cookies.token);
     cookies.token && getUserData(cookies.token);
   };
+
+  useEffect(() => {
+    globalState.openCreatePlaylist && renderCreatePlaylist();
+  }, [globalState]);
 
   const renderPlayLists = () => {
     setShowUserPlaylist(true);
@@ -72,6 +77,8 @@ const HomeScreen = () => {
     setShowUserAlbums(false);
     setShowCreatePlaylist(true);
   };
+
+  // ;
 
   if (cookies.token) {
     return (

@@ -88,16 +88,8 @@ const fetchUserData = async (accessToken) => {
   }
 };
 
-const setExpTime = () => {
-  const expTime = new Date();
-  expTime.setMinutes(expTime.getMinutes() + 30);
-  const time = expTime.getTime();
-  localStorage.setItem("expTime", JSON.stringify(time));
-};
-
 const tokenSuccess = (dispatch) => {
   return async (token) => {
-    setExpTime();
     dispatch({ type: "get_token", payload: token });
     const response = await fetchUserData(token);
     dispatch({ type: "get_userdata", payload: response });

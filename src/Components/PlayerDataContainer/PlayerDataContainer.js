@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 
 import { Player } from "../Player/Player";
+import "./PlayerDataContainer.css";
 
 import { Context as playerContext } from "../../store/playerContext";
 import { Context as userDataContext } from "../../store/fetchDataContext";
@@ -33,13 +34,17 @@ export const PlayerDataContainer = (props) => {
   }, []); //eslint-disable-line
   return (
     <div data-test="PlayerDataContainer">
-      {dataState.playerdata && (
+      {dataState.playerdata ? (
         <Player
           data={dataState.playerdata}
           forwardSong={forwardSong}
           backwardSong={backwardSong}
           getCurrentPlayback={getCurrentPlayback}
         />
+      ) : (
+        <h3 className="errorPlayerMessage">
+          Please, play a song on your device to enable the player
+        </h3>
       )}
     </div>
   );

@@ -34,11 +34,24 @@ const SearchResults = (props) => {
     <div className="SearchResults" data-test="SearchResults">
       <h2>Search Results</h2>
       <div className="SearchResultsCards">
-        <h3 onClick={() => renderTracks()}>Tracks</h3>
-        <h3 data-test="ArtistsButton" onClick={() => renderArtists()}>
+        <h3
+          onClick={() => renderTracks()}
+          className={showTracks && "activeButton"}
+        >
+          Tracks
+        </h3>
+        <h3
+          data-test="ArtistsButton"
+          className={showArtists && "activeButton"}
+          onClick={() => renderArtists()}
+        >
           Artists
         </h3>
-        <h3 data-test="AlbumsButton" onClick={() => renderAlbums()}>
+        <h3
+          data-test="AlbumsButton"
+          className={showAlbums && "activeButton"}
+          onClick={() => renderAlbums()}
+        >
           Albums
         </h3>
       </div>

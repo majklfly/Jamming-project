@@ -2,6 +2,7 @@ import createDataContext from "./createDataContext";
 
 export const initialState = {
   tracks: [],
+  openCreatePlaylist: false,
 };
 
 export const globalReducer = (state, action) => {
@@ -15,6 +16,8 @@ export const globalReducer = (state, action) => {
       };
     case "set_playlist":
       return { ...state, playlist: action.list };
+    case "open_createplaylist":
+      return { ...state, openCreatePlaylist: true };
     case "reset_animation":
       return { ...state, resetAnimation: action.value };
     default:
@@ -25,6 +28,7 @@ export const globalReducer = (state, action) => {
 const addTrack = (dispatch) => {
   return (track) => {
     dispatch({ type: "add_track", track });
+    dispatch({ type: "open_createplaylist" });
   };
 };
 

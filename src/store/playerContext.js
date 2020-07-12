@@ -31,6 +31,23 @@ const updateVolume = (dispatch) => {
   };
 };
 
+const updateProgress = (dispatch) => {
+  return async (token, value) => {
+    axios
+      .put(
+        `https://api.spotify.com/v1/me/player/seek?position_ms=${value}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => null)
+      .catch((e) => console.log(e));
+  };
+};
+
 const playSong = (dispatch) => {
   return async (token) => {
     try {
@@ -109,6 +126,7 @@ export const { Context, Provider } = createDataContext(
     nextSong,
     previousSong,
     updateVolume,
+    updateProgress,
   },
   initialState
 );

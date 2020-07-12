@@ -12,15 +12,12 @@ import { useCookies } from "react-cookie";
 
 const Track = (props) => {
   const { addTrack, removeTrack, resetAnimation } = useContext(Context);
-  const { playSpecificSong, getCurrentPlayback } = useContext(DataContext);
+  const { playSpecificSong } = useContext(DataContext);
   const [cookies] = useCookies(["token"]);
 
   const playTheSong = (uri) => {
     playSpecificSong(cookies.token, uri);
     resetAnimation(true);
-    setTimeout(function () {
-      getCurrentPlayback(cookies.token);
-    }, 400);
   };
 
   return (

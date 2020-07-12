@@ -13,24 +13,27 @@
 }
 .PlayerContainer h3 {
   padding-left: 2vw;
+  width: 50%;
+  margin-left: 10%;
+  text-align: left;
 }
 .PlayerContainer h5 {
-  padding-left: 2vw;
+  padding-left: 10%;
   margin-top: 0;
   text-align: center;
-  width: 50%;
+  width: 40%;
   height: 80px;
 }
 .playerContainerIMG {
   position: absolute;
-  height: 70%;
+  height: 60%;
   right: 30px;
 }
 .PlayerControllers {
   position: absolute;
   width: 40%;
   height: 100px;
-  left: 40px;
+  left: 15%;
   bottom: 40px;
   display: flex;
   flex-direction: row-reverse;
@@ -52,22 +55,6 @@
 .iconPrevious {
   font-size: 1.5rem;
   margin: 20%;
-}
-.playerProgress {
-  display: inline-block;
-  left: 200px;
-  width: 100%;
-  height: 30px;
-}
-.playerProgressContainer {
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  bottom: 20px;
-  left: 5%;
-  width: 90%;
-  height: 8px;
-  overflow: hidden;
 }
 .playerTimer {
   position: absolute;

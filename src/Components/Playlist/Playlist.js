@@ -4,24 +4,17 @@ import axios from "axios";
 
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { Context as DataContext } from "../../store/fetchDataContext";
-import { Context as globalContext } from "../../store/globalContext";
 import { useCookies } from "react-cookie";
 
 export const Playlist = (props) => {
   const [showAlbumDetails, setShowAlbumDetails] = useState(false);
   const [items, setItems] = useState([]);
-  const { resetAnimation } = useContext(globalContext);
-  const { playSpecificSong, getCurrentPlayback } = useContext(DataContext);
+  const { playSpecificSong } = useContext(DataContext);
   const [cookies] = useCookies(["token"]);
 
-  const playTheSong = async (uri) => {
-    const token = await localStorage.getItem("token");
-    getPlaylistItems(props.data.id, token);
-    playSpecificSong(token, uri);
-    resetAnimation(true);
-    setTimeout(function () {
-      getCurrentPlayback(token);
-    }, 400);
+  const playTheSong = (uri) => {
+    getPlaylistItems(props.data.id, cookies.token);
+    playSpecificSong(cookies.token, uri);
   };
 
   const getPlaylistItems = (playlist_id, token) => {

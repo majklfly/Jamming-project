@@ -41,10 +41,15 @@
   border-left: 1px solid white;
   border-radius: 5px;
   cursor: pointer;
+  opacity: 0.4;
   box-shadow: 0px 0px 5px lightgrey;
 }
 .SearchResultsCards h3:hover {
   box-shadow: 0px 0px 10px lightgrey;
+}
+.activeButton {
+  box-shadow: 0px 0px 50px lightgrey;
+  opacity: 0.9 !important;
 }
 
 ::-webkit-scrollbar {
