@@ -1,0 +1,15 @@
+.VolumeBar {
+  position: absolute;
+  width: 20px;
+  height: 70%;
+  top: 15px;
+  left: 3%;
+}
+root {
+  color: "#3a8589";
+}
+thumb {
+  height: 10;
+  width: 10;
+  border: "1px solid currentColor";
+}

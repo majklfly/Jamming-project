@@ -17,36 +17,41 @@
 .PlayerContainer h5 {
   padding-left: 2vw;
   margin-top: 0;
-  width: 70%;
-  height: 50px;
+  text-align: center;
+  width: 50%;
+  height: 80px;
 }
-
 .playerContainerIMG {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  height: 70%;
   right: 30px;
+}
+.PlayerControllers {
+  position: absolute;
+  width: 40%;
+  height: 100px;
+  left: 40px;
+  bottom: 40px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
 }
 
 .playIcon {
-  position: absolute;
   font-size: 3rem;
-  bottom: 0px;
-  left: 50%;
+  position: absolute;
+  align-self: center;
   transform: translate(-50%);
-  bottom: 60px;
+  bottom: 25px;
 }
 .iconNext {
-  position: absolute;
   font-size: 1.5rem;
-  bottom: 70px;
-  right: 30%;
+  margin: 20%;
 }
 .iconPrevious {
-  position: absolute;
   font-size: 1.5rem;
-  bottom: 70px;
-  left: 30%;
+  margin: 20%;
 }
 .playerProgress {
   display: inline-block;

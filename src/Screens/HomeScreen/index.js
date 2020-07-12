@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCookies, CookiesProvider } from "react-cookie";
+import { useCookies } from "react-cookie";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -37,6 +37,8 @@ const HomeScreen = () => {
     const date = new Date();
     const currentTime = date.getTime();
     const expTime = localStorage.getItem("expTime");
+    console.log(currentTime);
+    console.log(expTime);
     currentTime > expTime && removeCookie();
   };
 
@@ -44,15 +46,13 @@ const HomeScreen = () => {
     state.token && setCookie("token", state.token, { path: "/" });
   }, [state.token]); //eslint-disable-line
 
-  console.log(cookies.token);
-
   useEffect(() => {
     getPlayerData();
   }, []); //eslint-disable-line
 
   const getPlayerData = () => {
-    getUserData(cookies.token);
     checkExpiration();
+    cookies.token && getUserData(cookies.token);
   };
 
   const renderPlayLists = () => {

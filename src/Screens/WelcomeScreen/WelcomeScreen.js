@@ -5,7 +5,7 @@ import "./WelcomeScreen.css";
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
 
 const scopes = encodeURIComponent(
-  "user-modify-playback-state user-read-playback-state user-read-private user-read-email user-library-read user-read-currently-playing"
+  "user-modify-playback-state user-read-playback-state user-read-private user-read-email user-library-read user-read-currently-playing playlist-modify-private playlist-modify-public"
 );
 
 export const WelcomeScreen = () => {
@@ -34,7 +34,7 @@ export const WelcomeScreen = () => {
         </h3>
         <SpotifyLogin
           clientId={"91676161ae734812a2d87002a4246b27"}
-          redirectUri={"https://jamming-project.herokuapp.com/"}
+          redirectUri={"http://localhost:3000/"}
           scope={scopes}
           onSuccess={onSuccess}
           onFailure={onFailure}

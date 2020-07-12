@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Timer from "react-compound-timer";
 import "./styles.css";
-
 import { Progress } from "antd";
 import { useCookies } from "react-cookie";
 
@@ -15,12 +14,14 @@ import {
 
 import { Context as playerContext } from "../../store/playerContext";
 import { Context as globalContext } from "../../store/globalContext";
+import { Context as userDataContext } from "../../store/fetchDataContext";
+import { VolumeController } from "../VolumeController/VolumeController";
 
 export const Player = (props) => {
   const controls = useAnimation();
   const { state: globalState, resetAnimation } = useContext(globalContext);
   const { playSong, pauseSong } = useContext(playerContext);
-  const [isPlaying, setIsPlaying] = useState(props.data.is_playing);
+  const { getCurrentPlayback } = useContext(userDataContext);
   const [cookies] = useCookies(["token"]);
 
   const full = props.data.item.duration_ms;
@@ -37,6 +38,14 @@ export const Player = (props) => {
     resetAnimation(false);
   }
 
+  const updatePLayback = () => {
+    getCurrentPlayback(cookies.token);
+  };
+
+  setTimeout(function () {
+    updatePLayback();
+  }, 400);
+
   const togglePlayButton = (currentState, pause, start) => {
     if (currentState) {
       pause();
@@ -50,7 +59,6 @@ export const Player = (props) => {
         transition: { duration: restInSec },
       });
     }
-    setIsPlaying(!currentState);
   };
 
   const endOfSong = async () => {
@@ -85,15 +93,16 @@ export const Player = (props) => {
     }, 400);
   };
 
-  if (isPlaying) {
-    controls.start({
-      x: 0,
-      transition: { duration: restInSec },
-    });
-  }
+  props.data.is_playing
+    ? controls.start({
+        x: 0,
+        transition: { duration: restInSec },
+      })
+    : controls.stop();
 
   return (
     <div className="PlayerContainer" data-test="PlayerContainer">
+      <VolumeController volume={props.data.device.volume_percent} />
       <Timer
         initialTime={rest}
         direction="backward"
@@ -108,24 +117,33 @@ export const Player = (props) => {
             )}
             <img
               alt="album"
-              src={props.data.item.album.images[2].url}
+              src={props.data.item.album.images[0].url}
               className="playerContainerIMG"
             />
-            <RightOutlined className="iconNext" onClick={() => pressNext()} />
-            <div className="iconPosition"> </div>
-            <motion.div style={{ opacity: isPlaying ? 1 : 0, x: 0 }}>
-              <PauseOutlined className="playIcon" />
-            </motion.div>
-            <motion.div animate style={{ opacity: isPlaying ? 0 : 1, x: 0 }}>
-              <CaretRightOutlined
-                className="playIcon"
-                onClick={() => togglePlayButton(isPlaying, pause, start)}
+            <div className="PlayerControllers">
+              <RightOutlined className="iconNext" onClick={() => pressNext()} />
+              <div className="iconPosition"> </div>
+              <motion.div
+                style={{ opacity: props.data.is_playing ? 1 : 0, x: 0 }}
+              >
+                <PauseOutlined className="playIcon" />
+              </motion.div>
+              <motion.div
+                animate
+                style={{ opacity: props.data.is_playing ? 0 : 1, x: 0 }}
+              >
+                <CaretRightOutlined
+                  className="playIcon"
+                  onClick={() =>
+                    togglePlayButton(props.data.is_playing, pause, start)
+                  }
+                />
+              </motion.div>
+              <LeftOutlined
+                className="iconPrevious"
+                onClick={() => pressPrevious()}
               />
-            </motion.div>
-            <LeftOutlined
-              className="iconPrevious"
-              onClick={() => pressPrevious()}
-            />
+            </div>
             <div className="playerProgressContainer">
               <motion.div
                 animate={controls}

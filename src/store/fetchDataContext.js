@@ -224,7 +224,7 @@ export const getCurrentPlaylists = (dispatch) => {
 export const getCurrentPlayback = (dispatch) => {
   return (token) => {
     axios
-      .get("https://api.spotify.com/v1/me/player/currently-playing", {
+      .get("https://api.spotify.com/v1/me/player", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) =>

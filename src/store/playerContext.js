@@ -6,13 +6,29 @@ import { getCurrentPlayback } from "./fetchDataContext";
 export const initialState = {};
 
 const reducer = (state, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case "get_currentPlayback":
       return { ...state, data: action.payload };
     default:
       return state;
   }
+};
+
+const updateVolume = (dispatch) => {
+  return async (token, value) => {
+    axios
+      .put(
+        `https://api.spotify.com/v1/me/player/volume?volume_percent=${value}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => null)
+      .catch((e) => console.log(e));
+  };
 };
 
 const playSong = (dispatch) => {
@@ -92,6 +108,7 @@ export const { Context, Provider } = createDataContext(
     pauseSong,
     nextSong,
     previousSong,
+    updateVolume,
   },
   initialState
 );
