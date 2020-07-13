@@ -45,7 +45,11 @@ export const PlayerProgressBar = (props) => {
   };
 
   return (
-    <div className="ProgressBarContainer" id="ProgressBarContainer">
+    <div
+      className="ProgressBarContainer"
+      id="ProgressBarContainer"
+      data-test="PlayerProgressBar"
+    >
       {toggleBar ? (
         <input
           type="range"

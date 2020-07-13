@@ -7,6 +7,7 @@ import {
   faCompactDisc,
   faList,
   faPlus,
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Context as fetchDataContext } from "../../store/fetchDataContext";
@@ -14,6 +15,7 @@ import { Context as fetchDataContext } from "../../store/fetchDataContext";
 import empty_profile from "../../assets/empty_profile.png";
 
 import "./styles.css";
+import { BackgroundSVG } from "../../Components/BackgroundSVG/BackgroundSVG";
 
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import SearchResults from "../../Components/SearchResults/SearchResults";
@@ -39,7 +41,7 @@ const HomeScreen = () => {
     const date = new Date();
     const currentTime = date.getTime();
     const expTime = localStorage.getItem("expTime");
-    currentTime > expTime && removeCookie();
+    currentTime > expTime && removeCookie("token");
   };
 
   useEffect(() => {
@@ -52,7 +54,6 @@ const HomeScreen = () => {
 
   const getPlayerData = () => {
     checkExpiration();
-    console.log(cookies.token);
     cookies.token && getUserData(cookies.token);
   };
 
@@ -91,21 +92,29 @@ const HomeScreen = () => {
               </h1>
 
               <div className="userBoardInfo">
-                <FontAwesomeIcon
-                  icon={faPlus}
-                  className="createPlaylistIcon"
-                  onClick={() => renderCreatePlaylist()}
-                />
-                <FontAwesomeIcon
-                  icon={faList}
-                  className="ShowPlayerListIcon"
-                  onClick={() => renderPlayLists()}
-                />
-                <FontAwesomeIcon
-                  icon={faCompactDisc}
-                  className="ShowAlbumsIcon"
-                  onClick={() => renderAlbums()}
-                />
+                <div className="UserBoardIconContainer">
+                  <FontAwesomeIcon
+                    icon={faPlus}
+                    className="createPlaylistIcon"
+                    onClick={() => renderCreatePlaylist()}
+                  />
+                  <FontAwesomeIcon
+                    icon={faList}
+                    className="ShowPlayerListIcon"
+                    onClick={() => renderPlayLists()}
+                  />
+                  <FontAwesomeIcon
+                    icon={faCompactDisc}
+                    className="ShowAlbumsIcon"
+                    onClick={() => renderAlbums()}
+                  />
+                  <FontAwesomeIcon
+                    icon={faSignOutAlt}
+                    className="ShowAlbumsIcon"
+                    onClick={() => removeCookie("token")}
+                  />
+                </div>
+
                 {state.userdata.display_name.length > 20 ? (
                   <h4>{state.userdata.display_name}</h4>
                 ) : (
@@ -165,12 +174,14 @@ const HomeScreen = () => {
             </div>
           </>
         )}
+        <BackgroundSVG />
       </>
     );
   } else {
     return (
       <div>
         <WelcomeScreen />
+        <BackgroundSVG />
       </div>
     );
   }

@@ -26,7 +26,7 @@ export const VolumeController = (props) => {
   })(Slider);
 
   return (
-    <div className="VolumeBar">
+    <div className="VolumeBar" data-test="VolumeController">
       <VolumeSlider
         value={value}
         min={0}

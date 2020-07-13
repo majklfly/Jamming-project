@@ -30,7 +30,9 @@ export const Player = (props) => {
 
   return (
     <div className="PlayerContainer" data-test="PlayerContainer">
-      <VolumeController volume={props.data.device.volume_percent} />
+      <VolumeController
+        volume={props.data.device && props.data.device.volume_percent}
+      />
       <React.Fragment>
         {props.data.item.name.length < 30 ? (
           <h3>{props.data.item.name}</h3>

@@ -36,20 +36,20 @@ const SearchResults = (props) => {
       <div className="SearchResultsCards">
         <h3
           onClick={() => renderTracks()}
-          className={showTracks && "activeButton"}
+          className={showTracks ? "activeButton" : "className"}
         >
           Tracks
         </h3>
         <h3
           data-test="ArtistsButton"
-          className={showArtists && "activeButton"}
+          className={showArtists ? "activeButton" : "className"}
           onClick={() => renderArtists()}
         >
           Artists
         </h3>
         <h3
           data-test="AlbumsButton"
-          className={showAlbums && "activeButton"}
+          className={showAlbums ? "activeButton" : "className"}
           onClick={() => renderAlbums()}
         >
           Albums

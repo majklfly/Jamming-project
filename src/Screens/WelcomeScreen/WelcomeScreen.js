@@ -31,19 +31,15 @@ export const WelcomeScreen = () => {
         Ja<span className="highlight">mm</span>ing
       </h1>
       <div className="welcome-text">
-        <h2 style={{ color: "white" }}>
-          This Page is designated to interact with Spotify.
-        </h2>
-        <h3 style={{ color: "white" }}>
+        <h2>This Page is designated to interact with Spotify.</h2>
+        <h3>
           1) To enjoy fully the website, please play a song on your device.
         </h3>
-        <h3 style={{ color: "white" }}>
+        <h3>
           2) With enter you will be asked to login to your account and will
           recieve a token, which will be valid and stored for 30 minutes.
         </h3>
-        <h3 style={{ color: "white" }}>
-          3) This token is stored in the cookies of your browser.
-        </h3>
+        <h3>3) This token is stored in the cookies of your browser.</h3>
         <SpotifyLogin
           clientId={"91676161ae734812a2d87002a4246b27"}
           redirectUri={"http://localhost:3000/"}

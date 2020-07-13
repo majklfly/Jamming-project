@@ -22,8 +22,8 @@ export const UserAlbums = () => {
       <h2>Albums</h2>
       {state.albums &&
         state.albums.items.map((album) => (
-          <div className="Albums-container">
-            <Album data={album} key={album.album.id} data-test="Albums" />
+          <div className="Albums-container" key={album.album.id}>
+            <Album data={album} data-test="Albums" />
           </div>
         ))}
     </div>

@@ -72,10 +72,15 @@ h2 {
   right: 5px;
   cursor: pointer;
 }
+.UserBoardIconContainer {
+  position: relative;
+  right: 240px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+}
 .ShowAlbumsIcon {
-  position: absolute;
-  top: 20px;
-  left: -50px;
   width: 70px;
   color: whitesmoke;
   font-size: 1.5rem;
@@ -85,9 +90,6 @@ h2 {
   cursor: pointer;
 }
 .ShowPlayerListIcon {
-  position: absolute;
-  top: 20px;
-  left: -100px;
   width: 70px;
   color: whitesmoke;
   font-size: 1.5rem;
@@ -97,9 +99,6 @@ h2 {
   cursor: pointer;
 }
 .createPlaylistIcon {
-  position: absolute;
-  top: 20px;
-  left: -150px;
   width: 70px;
   color: whitesmoke;
   font-size: 1.5rem;
@@ -111,10 +110,6 @@ h2 {
 
 .App {
   padding: 0 17% 10% 17%;
-  background-image: url("../../assets/background_photo_desktop.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   font-family: "Work Sans", sans-serif;
   font-weight: 500;
   color: #fff;
@@ -168,30 +163,18 @@ h2 {
     align-items: center;
     margin-bottom: 40px;
   }
-}
-
-@media only screen and (max-width: 995px) {
   .userBoardInfo h3 {
     opacity: 0;
   }
   .userBoardInfo h5 {
     opacity: 0;
   }
-  .ShowPlayerListIcon {
-    position: absolute;
-    left: 15vw;
-  }
-  .ShowAlbumsIcon {
-    position: absolute;
-    left: 8vw;
-  }
-  .createPlaylistIcon {
-    position: absolute;
-    left: 3vw;
+  .UserBoardIconContainer {
+    right: 28px;
   }
 }
 
-@media only screen and (max-width: 670px) {
+@media only screen and (max-width: 730px) {
   .ShowPlayerListIcon {
     display: none;
   }

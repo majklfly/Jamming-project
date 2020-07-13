@@ -1,9 +1,5 @@
 .WelcomeScreen {
   height: 100vh;
-  background-image: url("../../assets/background_photo_desktop.jpg");
-  background-position: 0px 124px;
-  background-size: cover;
-  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
 }
@@ -14,9 +10,11 @@
 .welcome-text h2 {
   font-size: 2rem;
   text-align: center;
+  color: white;
 }
 .welcome-text h3 {
   text-align: start;
+  color: white;
 }
 .enterButton {
   margin-left: 50%;
@@ -45,4 +43,18 @@
   left: 50%;
   transform: translate(-50%);
   color: white;
+}
+
+@media only screen and (max-width: 661px) {
+  .welcome-text h3 {
+    display: none;
+  }
+  .welcome-text h2 {
+    font-size: 120%;
+  }
+
+  .enterButton {
+    width: 30%;
+    font-size: 150%;
+  }
 }
