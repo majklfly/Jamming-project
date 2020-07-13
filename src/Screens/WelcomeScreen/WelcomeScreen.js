@@ -31,7 +31,7 @@ export const WelcomeScreen = () => {
         Ja<span className="highlight">mm</span>ing
       </h1>
       <div className="welcome-text">
-        <h2>Jamming is an interactive website using Spotify API.</h2>
+        <h2>Jamming is an interactive website using Spotify API</h2>
         <h3>
           1) To enter you will be asked to login and your details will be stored
           for 30minutes.
