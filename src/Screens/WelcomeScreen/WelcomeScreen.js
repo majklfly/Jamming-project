@@ -31,15 +31,17 @@ export const WelcomeScreen = () => {
         Ja<span className="highlight">mm</span>ing
       </h1>
       <div className="welcome-text">
-        <h2>Jamming is an interactive website using Spotify API</h2>
+        <h2>
+          Jamming allows you to play music and interact with the content of your
+          account.
+        </h2>
         <h3>
-          1) To enter you will be asked to login and your details will be stored
-          for 30minutes.
+          Login using your spotify account. Cookies are being stored for better
+          user experience.
         </h3>
-        <h3>2) Jamming is using cookies to provider better experience.</h3>
         <SpotifyLogin
           clientId={process.env.REACT_APP_CLIENTID}
-          redirectUri={"https://jamming-project.herokuapp.com/"}
+          redirectUri={"http://localhost:3000/"}
           scope={scopes}
           onSuccess={onSuccess}
           onFailure={onFailure}
