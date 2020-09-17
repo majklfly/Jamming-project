@@ -41,7 +41,7 @@ export const WelcomeScreen = () => {
         </h3>
         <SpotifyLogin
           clientId={process.env.REACT_APP_CLIENTID}
-          redirectUri={"http://localhost:3000/"}
+          redirectUri={"https://jamming-project.herokuapp.com/"}
           scope={scopes}
           onSuccess={onSuccess}
           onFailure={onFailure}
