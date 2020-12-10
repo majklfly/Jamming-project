@@ -1,26 +1,28 @@
 .BackgroundSVGContainer {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
 }
+
 .BackgroundSVGSecondLayer {
-  display: none;
+    display: none;
 }
+
 .BackgroundSVGSecondLayer2 {
-  display: none;
+    display: none;
 }
 
 @media only screen and (max-width: 1250px) {
-  .BackgroundSVGSecondLayer {
-    display: block;
-    margin-top: -20px;
-  }
+    .BackgroundSVGSecondLayer {
+        display: block;
+        margin-top: -20px;
+    }
 }
 
 @media only screen and (max-width: 730px) {
-  .BackgroundSVGSecondLayer2 {
-    display: block;
-    margin-top: -20px;
-  }
+    .BackgroundSVGSecondLayer2 {
+        display: block;
+        margin-top: -20px;
+    }
 }

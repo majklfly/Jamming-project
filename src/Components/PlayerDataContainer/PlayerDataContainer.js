@@ -43,7 +43,8 @@ export const PlayerDataContainer = (props) => {
         />
       ) : (
         <h3 className="errorPlayerMessage">
-          Please, play a song on your device to enable the player
+          Please, play a song on your device and reload the page to enable the
+          player
         </h3>
       )}
     </div>
