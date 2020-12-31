@@ -41,30 +41,28 @@
     bottom: 40px;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: space-evenly;
     z-index: 10;
 }
 
 .playIcon {
-    font-size: 3rem;
+    font-size: 2rem;
     position: absolute;
     align-self: center;
     transform: translate(-50%);
-    bottom: 25px;
-    z-index: 50;
+    left: 50%;
+    top: 20%;
 }
 
 .iconNext {
-    position: absolute !important;
-    top: 0 !important;
-    left: 100px !important;
+    position: relative;
     font-size: 1.5rem;
-    padding-left: 100px !important;
-    color: red;
+    margin: 20%;
 }
 
 .iconPrevious {
+    position: relative;
     font-size: 1.5rem;
     margin: 20%;
 }

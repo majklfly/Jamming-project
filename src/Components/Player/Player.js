@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import "./styles.css";
 import { useCookies } from "react-cookie";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  CaretRightOutlined,
-  PauseOutlined,
-  RightOutlined,
-  LeftOutlined,
-} from "@ant-design/icons";
+  faAngleRight,
+  faAngleLeft,
+  faPause,
+  faPlay
+} from "@fortawesome/free-solid-svg-icons";
 
 import { Context as playerContext } from "../../store/playerContext";
 import { Context as userDataContext } from "../../store/fetchDataContext";
@@ -45,28 +46,34 @@ export const Player = (props) => {
           className="playerContainerIMG"
         />
         <div className="PlayerControllers">
-          <RightOutlined
+          <FontAwesomeIcon
+            icon={faAngleRight}
             className="iconNext"
-            style={{position: "relative", left: '100px', color: 'green'}}
             onClick={() => props.forwardSong()}
-          />
+        />
           <motion.div
             style={{ opacity: props.data.is_playing ? 1 : 0, x: 0 }}
             className="playIcon"
           >
-            <PauseOutlined />
+            <FontAwesomeIcon
+              className="playIcon"
+              icon={faPause}
+              onClick={() => togglePlayButton(props.data.is_playing)}
+            />
           </motion.div>
           <motion.div
             animate
             className="playIcon"
             style={{ opacity: props.data.is_playing ? 0 : 1, x: 0 }}
           >
-            <CaretRightOutlined
-          
+            <FontAwesomeIcon
+              className="playIcon"
+              icon={faPlay}
               onClick={() => togglePlayButton(props.data.is_playing)}
             />
           </motion.div>
-          <LeftOutlined
+          <FontAwesomeIcon
+            icon={faAngleLeft}
             className="iconPrevious"
             onClick={() => props.backwardSong()}
           />
