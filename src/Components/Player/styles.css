@@ -1,63 +1,76 @@
 .PlayerContainer {
-  width: 40vw;
-  min-width: 400px;
-  height: 200px;
-  margin-right: 2.5%;
-  margin-bottom: 5%;
-  border-radius: 7px;
-  background-color: rgba(1, 12, 63, 0.7);
-  display: flex;
-  flex-direction: row;
-  padding-top: 2vw;
-  position: relative;
+    width: 40vw;
+    min-width: 400px;
+    height: 200px;
+    margin-right: 2.5%;
+    margin-bottom: 5%;
+    border-radius: 7px;
+    background-color: rgba(1, 12, 63, 0.7);
+    display: flex;
+    flex-direction: row;
+    padding-top: 2vw;
+    position: relative;
 }
+
 .PlayerContainer h3 {
-  padding-left: 2vw;
-  width: 50%;
-  margin-left: 10%;
-  text-align: left;
+    padding-left: 2vw;
+    width: 50%;
+    margin-left: 10%;
+    text-align: left;
 }
+
 .PlayerContainer h5 {
-  padding-left: 10%;
-  margin-top: 0;
-  text-align: center;
-  width: 40%;
-  height: 80px;
+    padding-left: 10%;
+    margin-top: 0;
+    text-align: center;
+    width: 40%;
+    height: 80px;
 }
+
 .playerContainerIMG {
-  position: absolute;
-  height: 60%;
-  right: 30px;
+    position: absolute;
+    height: 60%;
+    right: 30px;
 }
+
 .PlayerControllers {
-  position: absolute;
-  width: 40%;
-  height: 100px;
-  left: 15%;
-  bottom: 40px;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    width: 40%;
+    height: 100px;
+    left: 15%;
+    bottom: 40px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
 }
 
 .playIcon {
-  font-size: 3rem;
-  position: absolute;
-  align-self: center;
-  transform: translate(-50%);
-  bottom: 25px;
+    font-size: 3rem;
+    position: absolute;
+    align-self: center;
+    transform: translate(-50%);
+    bottom: 25px;
+    z-index: 50;
 }
+
 .iconNext {
-  font-size: 1.5rem;
-  margin: 20%;
+    position: absolute !important;
+    top: 0 !important;
+    left: 100px !important;
+    font-size: 1.5rem;
+    padding-left: 100px !important;
+    color: red;
 }
+
 .iconPrevious {
-  font-size: 1.5rem;
-  margin: 20%;
+    font-size: 1.5rem;
+    margin: 20%;
 }
+
 .playerTimer {
-  position: absolute;
-  right: 30px;
-  bottom: 15px;
+    position: absolute;
+    right: 30px;
+    bottom: 15px;
 }

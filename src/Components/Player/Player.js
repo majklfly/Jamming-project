@@ -47,18 +47,22 @@ export const Player = (props) => {
         <div className="PlayerControllers">
           <RightOutlined
             className="iconNext"
+            style={{position: "relative", left: '100px', color: 'green'}}
             onClick={() => props.forwardSong()}
           />
-          <div className="iconPosition"> </div>
-          <motion.div style={{ opacity: props.data.is_playing ? 1 : 0, x: 0 }}>
-            <PauseOutlined className="playIcon" />
+          <motion.div
+            style={{ opacity: props.data.is_playing ? 1 : 0, x: 0 }}
+            className="playIcon"
+          >
+            <PauseOutlined />
           </motion.div>
           <motion.div
             animate
+            className="playIcon"
             style={{ opacity: props.data.is_playing ? 0 : 1, x: 0 }}
           >
             <CaretRightOutlined
-              className="playIcon"
+          
               onClick={() => togglePlayButton(props.data.is_playing)}
             />
           </motion.div>
