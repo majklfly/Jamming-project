@@ -42,6 +42,7 @@ h2 {
     display: flex;
     top: 30px;
     right: 10px;
+    z-index: 1;
 }
 
 .userBoardInfo h3 {
@@ -86,6 +87,8 @@ h2 {
 }
 
 .ShowAlbumsIcon {
+    position: relative;
+    z-index: 1;
     width: 70px;
     color: whitesmoke;
     font-size: 1.5rem;
@@ -97,6 +100,8 @@ h2 {
 }
 
 .ShowPlayerListIcon {
+    position: relative;
+    z-index: 1;
     width: 70px;
     color: whitesmoke;
     font-size: 1.5rem;
@@ -108,9 +113,11 @@ h2 {
 }
 
 .createPlaylistIcon {
+    position: relative;
     width: 70px;
     color: whitesmoke;
     font-size: 1.5rem;
+    z-index: 1;
 }
 
 .createPlaylistIcon:hover {
