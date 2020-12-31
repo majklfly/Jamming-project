@@ -1,12 +1,3 @@
-.BackgroundSVGContainer {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100vw !important;
-    background-color: red
-}
-
 svg {
     position: fixed;
     top: 0;
@@ -14,4 +5,5 @@ svg {
     left: 0;
     right: 0;
     height: 100%;
+    z-index: -1;
 }

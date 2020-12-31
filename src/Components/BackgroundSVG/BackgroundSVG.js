@@ -3,7 +3,6 @@ import "./BackgroundSVG.css";
 
 export const BackgroundSVG = () => {
   return (
-    <div className="BackgroundSVGContainer" data-test="BackgroundSVG">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 200 70"
@@ -63,6 +62,5 @@ export const BackgroundSVG = () => {
           <polygon points="140 70 140 80 150 80 160 70" />
         </g>
       </svg>
-    </div>
   );
 };

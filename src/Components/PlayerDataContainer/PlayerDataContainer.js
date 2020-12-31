@@ -33,7 +33,7 @@ export const PlayerDataContainer = (props) => {
     getPlayer();
   }, []); //eslint-disable-line
   return (
-    <div data-test="PlayerDataContainer">
+    <div data-test="PlayerDataContainer" className="playerDataContainer">
       {dataState.playerdata ? (
         <Player
           data={dataState.playerdata}

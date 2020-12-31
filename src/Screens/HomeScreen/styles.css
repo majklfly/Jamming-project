@@ -1,187 +1,200 @@
 body,
 html,
 #root {
-  height: 100%;
+    height: 100%;
 }
 
 html {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 h1 {
-  padding: 0.77rem 0;
-  background-color: #010c3f;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.88rem;
-  color: #fff;
+    padding: 0.77rem 0;
+    background-color: #010c3f;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.88rem;
+    color: #fff;
 }
 
 h1 .highlight {
-  color: #6c41ec;
+    color: #6c41ec;
 }
 
 h2 {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.55rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.55rem;
 }
 
 .TopContainer {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
+
 .TopContainer h1 {
-  width: 100%;
+    width: 100%;
 }
 
 .userBoardInfo {
-  position: absolute;
-  height: 60px;
-  width: 250px;
-  display: flex;
-  top: 30px;
-  right: 10px;
+    position: absolute;
+    height: 60px;
+    width: 250px;
+    display: flex;
+    top: 30px;
+    right: 10px;
 }
 
 .userBoardInfo h3 {
-  font-size: 1.4rem;
-  position: absolute;
-  top: -15px;
-  color: white;
+    font-size: 1.4rem;
+    position: absolute;
+    top: -15px;
+    color: white;
 }
+
 .userBoardInfo h4 {
-  color: white;
-  position: absolute;
-  top: -10px;
+    color: white;
+    position: absolute;
+    top: -10px;
 }
 
 .userBoardInfo h5 {
-  font-size: 0.7rem;
-  top: 18px;
-  position: absolute;
-  display: flex;
-  justify-content: flex-end;
-  color: white;
+    font-size: 0.7rem;
+    top: 18px;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
 }
+
 .userBoardIMG {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
 }
+
 .UserBoardIconContainer {
-  position: relative;
-  right: 240px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 90%;
+    position: relative;
+    right: 240px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
 }
+
 .ShowAlbumsIcon {
-  width: 70px;
-  color: whitesmoke;
-  font-size: 1.5rem;
+    width: 70px;
+    color: whitesmoke;
+    font-size: 1.5rem;
 }
+
 .ShowAlbumsIcon:hover {
-  color: #6c41ec;
-  cursor: pointer;
+    color: #6c41ec;
+    cursor: pointer;
 }
+
 .ShowPlayerListIcon {
-  width: 70px;
-  color: whitesmoke;
-  font-size: 1.5rem;
+    width: 70px;
+    color: whitesmoke;
+    font-size: 1.5rem;
 }
+
 .ShowPlayerListIcon:hover {
-  color: #6c41ec;
-  cursor: pointer;
+    color: #6c41ec;
+    cursor: pointer;
 }
+
 .createPlaylistIcon {
-  width: 70px;
-  color: whitesmoke;
-  font-size: 1.5rem;
+    width: 70px;
+    color: whitesmoke;
+    font-size: 1.5rem;
 }
+
 .createPlaylistIcon:hover {
-  color: #6c41ec;
-  cursor: pointer;
+    color: #6c41ec;
+    cursor: pointer;
 }
 
 .App {
-  padding: 0 17% 10% 17%;
-  font-family: "Work Sans", sans-serif;
-  font-weight: 500;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+    padding: 0 17% 10% 17%;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
+
 .Header {
-  width: 90vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
+
 .Header h3 {
-  text-align: center;
-  width: 50%;
+    text-align: center;
+    width: 50%;
 }
 
 .App-playlist {
-  display: flex;
-  justify-content: space-between;
-  width: 90vw;
-  height: 800px;
-  margin-top: -5%;
-}
-.errorMessage {
-  position: fixed;
-  background-color: rgba(217, 30, 24, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  width: 50vw;
-  bottom: 20px;
-  text-align: center;
-  height: 40px;
-}
-@media only screen and (max-width: 1225px) {
-  .App-playlist {
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .Header {
-    width: 80vw;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    width: 90vw;
+    height: 800px;
+    margin-top: -5%;
+}
+
+.errorMessage {
+    position: fixed;
+    background-color: rgba(217, 30, 24, 1);
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
-  }
-  .userBoardInfo h3 {
-    opacity: 0;
-  }
-  .userBoardInfo h5 {
-    opacity: 0;
-  }
-  .UserBoardIconContainer {
-    right: 28px;
-  }
+    border-radius: 10px;
+    width: 50vw;
+    bottom: 20px;
+    text-align: center;
+    height: 40px;
+}
+
+@media only screen and (max-width: 1225px) {
+    .App-playlist {
+        align-items: center;
+        flex-direction: column;
+    }
+    .Header {
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    .userBoardInfo h3 {
+        opacity: 0;
+    }
+    .userBoardInfo h5 {
+        opacity: 0;
+    }
+    .UserBoardIconContainer {
+        right: 28px;
+    }
 }
 
 @media only screen and (max-width: 730px) {
-  .ShowPlayerListIcon {
-    display: none;
-  }
-  .ShowAlbumsIcon {
-    display: none;
-  }
-  .createPlaylistIcon {
-    display: none;
-  }
+    .ShowPlayerListIcon {
+        display: none;
+    }
+    .ShowAlbumsIcon {
+        display: none;
+    }
+    .createPlaylistIcon {
+        display: none;
+    }
 }
