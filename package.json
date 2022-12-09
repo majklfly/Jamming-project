@@ -16,7 +16,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "framer-motion": "^2.0.0-beta.77",
     "prop-types": "^15.7.2",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "react": "^16.13.1",
     "react-compound-timer": "^1.2.0",
     "react-cookie": "^4.0.3",
